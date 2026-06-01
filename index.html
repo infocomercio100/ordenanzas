@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digesto de Ordenanzas — Municipalidad de Concepción, Tucumán</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0a1628;
+  --navy-mid: #152240;
+  --navy-light: #1e3258;
+  --gold: #c9973a;
+  --gold-light: #e8b45a;
+  --gold-pale: #f7edd5;
+  --cream: #faf8f3;
+  --cream-dark: #f0ece0;
+  --text-dark: #1a1a2e;
+  --text-mid: #3d4a6b;
+  --text-muted: #7a8aaa;
+  --border: rgba(10,22,40,0.11);
+  --border-mid: rgba(10,22,40,0.2);
+  --white: #ffffff;
+  --green: #2a7a4b;
+  --red: #c0392b;
+  --shadow-sm: 0 2px 8px rgba(10,22,40,0.07);
+  --shadow-md: 0 6px 24px rgba(10,22,40,0.13);
+  --shadow-lg: 0 16px 48px rgba(10,22,40,0.2);
+  --r: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Source Sans 3', sans-serif;
+  background: var(--cream);
+  color: var(--text-dark);
+  min-height: 100vh;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ── HEADER ── */
+header {
+  background: var(--navy);
+  position: sticky; top: 0; z-index: 100;
+  box-shadow: var(--shadow-md);
+}
+.header-inner {
+  max-width: 1140px; margin: 0 auto;
+  padding: 14px 28px;
+  display: flex; align-items: center; gap: 16px;
+}
+.escudo {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif; font-weight: 700;
+  font-size: 20px; color: var(--navy); flex-shrink: 0;
+}
+.header-text h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 700; color: var(--white);
+}
+.header-text p {
+  font-size: 11px; color: var(--gold-light);
+  font-weight: 300; letter-spacing: 1.4px;
+  text-transform: uppercase; margin-top: 1px;
+}
+.header-actions { margin-left: auto; display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* ── TABS ── */
+.tabs {
+  background: var(--navy-mid);
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
+.tabs-inner {
+  max-width: 1140px; margin: 0 auto;
+  padding: 0 28px;
+  display: flex; gap: 0;
+}
+.tab-btn {
+  padding: 11px 20px;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 13px; font-weight: 600;
+  color: rgba(255,255,255,0.55);
+  background: none; border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer; letter-spacing: 0.3px;
+  transition: all 0.15s;
+  text-transform: uppercase;
+}
+.tab-btn:hover { color: rgba(255,255,255,0.85); }
+.tab-btn.active { color: var(--gold-light); border-bottom-color: var(--gold); }
+
+/* ── BUTTONS ── */
+.btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 9px 17px; border-radius: 8px;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 13px; font-weight: 600;
+  cursor: pointer; border: none;
+  transition: all 0.17s ease;
+  text-decoration: none; white-space: nowrap;
+}
+.btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+.btn-primary { background: var(--gold); color: var(--navy); }
+.btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+.btn-outline { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,0.3); }
+.btn-outline:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.6); }
+.btn-navy { background: var(--navy); color: var(--white); }
+.btn-navy:hover { background: var(--navy-light); }
+.btn-ghost { background: var(--white); color: var(--text-mid); border: 1px solid var(--border-mid); }
+.btn-ghost:hover { background: var(--cream-dark); }
+.btn-sm { padding: 6px 12px; font-size: 12px; }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; pointer-events: none; }
+
+/* ── MAIN ── */
+main { max-width: 1140px; margin: 0 auto; padding: 28px 28px; }
+
+/* ── VIEW PANELS ── */
+.view-panel { display: none; }
+.view-panel.active { display: block; }
+
+/* ── STATUS BAR ── */
+.status-bar {
+  background: var(--cream-dark);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 13px; color: var(--text-mid);
+  margin-bottom: 20px;
+  display: flex; align-items: center; gap: 10px;
+}
+.status-bar svg { width: 16px; height: 16px; flex-shrink: 0; color: var(--gold); }
+.status-bar.success { background: #e8f5e9; border-color: #a5d6a7; color: #1b5e20; }
+.status-bar.error { background: #fce4ec; border-color: #f48fb1; color: #880e4f; }
+
+/* ── STATS ── */
+.stats-bar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px; margin-bottom: 24px;
+}
+.stat-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 16px 18px;
+  text-align: center; box-shadow: var(--shadow-sm);
+}
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 30px; font-weight: 700; color: var(--navy);
+}
+.stat-label {
+  font-size: 11px; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.9px;
+  margin-top: 3px;
+}
+
+/* ── SEARCH PANEL ── */
+.search-section {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 20px 22px;
+  margin-bottom: 20px; box-shadow: var(--shadow-sm);
+}
+.section-label {
+  font-size: 11px; font-weight: 600; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 1.1px;
+  margin-bottom: 12px;
+}
+.search-row { display: flex; gap: 9px; flex-wrap: wrap; align-items: center; }
+.search-wrap { flex: 1; min-width: 220px; position: relative; }
+.search-wrap svg {
+  position: absolute; left: 12px; top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted); width: 16px; height: 16px;
+  pointer-events: none;
+}
+#searchInput, #searchInputTheme {
+  width: 100%;
+  padding: 10px 13px 10px 37px;
+  border: 1.5px solid var(--border-mid);
+  border-radius: 8px;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 14px; color: var(--text-dark);
+  background: var(--cream); outline: none;
+  transition: border-color 0.15s;
+}
+#searchInput:focus, #searchInputTheme:focus {
+  border-color: var(--gold); background: var(--white);
+}
+select.sel {
+  padding: 10px 13px;
+  border: 1.5px solid var(--border-mid);
+  border-radius: 8px;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 13px; color: var(--text-dark);
+  background: var(--cream); cursor: pointer; outline: none;
+  transition: border-color 0.15s;
+}
+select.sel:focus { border-color: var(--gold); }
+
+.filter-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 13px; }
+.tag {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 4px 12px; border-radius: 20px; font-size: 12px;
+  font-weight: 600; cursor: pointer;
+  border: 1.5px solid transparent;
+  transition: all 0.14s;
+  text-transform: uppercase; letter-spacing: 0.4px;
+  user-select: none;
+}
+.tag.active { background: var(--navy); color: var(--white); border-color: var(--navy); }
+.tag:not(.active) { background: var(--cream-dark); color: var(--text-mid); border-color: var(--cream-dark); }
+.tag:not(.active):hover { border-color: var(--navy); color: var(--navy); }
+
+/* ── RESULTS BAR ── */
+.results-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 13px; flex-wrap: wrap; gap: 10px;
+}
+.results-bar span { font-size: 13px; color: var(--text-muted); }
+.results-bar span b { color: var(--text-dark); }
+.sel-actions { display: flex; gap: 7px; align-items: center; }
+
+/* ── TABLE ── */
+.table-wrap {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--r); overflow: hidden;
+  box-shadow: var(--shadow-sm); margin-bottom: 20px;
+}
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+thead { background: var(--navy); color: var(--white); }
+thead th {
+  padding: 12px 15px; text-align: left;
+  font-weight: 600; font-size: 11px;
+  text-transform: uppercase; letter-spacing: 0.8px;
+  white-space: nowrap;
+}
+thead th:first-child { width: 38px; }
+tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background 0.1s; cursor: pointer;
+}
+tbody tr:last-child { border-bottom: none; }
+tbody tr:hover { background: var(--cream); }
+tbody tr.selected { background: #f6eed8; }
+td { padding: 11px 15px; vertical-align: middle; }
+td:first-child { text-align: center; }
+.ord-num {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600; color: var(--navy); font-size: 15px;
+  white-space: nowrap;
+}
+.ord-title { color: var(--text-dark); line-height: 1.4; max-width: 320px; }
+.ord-title small { display: block; color: var(--text-muted); font-size: 12px; margin-top: 2px; }
+.badge {
+  display: inline-block; padding: 3px 9px; border-radius: 12px;
+  font-size: 11px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.4px; white-space: nowrap;
+}
+.b-urbanismo   { background:#e8f4fd; color:#1a5a8a; }
+.b-transito    { background:#fff3e0; color:#7a4a00; }
+.b-ambiente    { background:#e8f5e9; color:#2e7d32; }
+.b-salud       { background:#fce4ec; color:#880e4f; }
+.b-hacienda    { background:#ede7f6; color:#4527a0; }
+.b-educacion   { background:#e0f7fa; color:#006064; }
+.b-seguridad   { background:#fff8e1; color:#e65100; }
+.b-obras       { background:#efebe9; color:#4e342e; }
+.b-comercio    { background:#f3e5f5; color:#6a1b9a; }
+.b-general     { background:#f5f5f5; color:#424242; }
+
+/* ── EMPTY / LOADING STATES ── */
+.state-box {
+  padding: 56px 20px; text-align: center; color: var(--text-muted);
+}
+.state-box svg { width: 44px; height: 44px; opacity: 0.28; margin-bottom: 14px; display: block; margin-inline: auto; }
+.state-box p { font-size: 15px; }
+.state-box small { font-size: 13px; margin-top: 6px; display: block; }
+.spinner {
+  width: 34px; height: 34px;
+  border: 3px solid var(--border);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  margin: 0 auto 14px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── PAGINATION ── */
+.pagination {
+  display: flex; justify-content: center; align-items: center;
+  gap: 5px; padding: 8px 0; flex-wrap: wrap;
+}
+.pg-btn {
+  padding: 6px 11px; border: 1.5px solid var(--border-mid);
+  border-radius: 7px; background: var(--white);
+  font-size: 13px; cursor: pointer;
+  font-family: 'Source Sans 3', sans-serif;
+  color: var(--text-mid); transition: all 0.13s;
+}
+.pg-btn:hover, .pg-btn.active { background: var(--navy); color: var(--white); border-color: var(--navy); }
+.pg-btn:disabled { opacity: 0.38; cursor: not-allowed; }
+
+/* ── THEME VIEW (ACCORDION) ── */
+.theme-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+.theme-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--r); overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+.theme-card-header {
+  display: flex; align-items: center;
+  padding: 14px 18px;
+  background: var(--navy); color: var(--white);
+  cursor: pointer; user-select: none;
+  gap: 12px;
+}
+.theme-card-header .tc-icon {
+  width: 34px; height: 34px; border-radius: 8px;
+  background: rgba(201,151,58,0.25);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 17px; flex-shrink: 0;
+}
+.theme-card-header .tc-name { font-weight: 600; font-size: 15px; }
+.theme-card-header .tc-count {
+  background: var(--gold); color: var(--navy);
+  padding: 2px 10px; border-radius: 12px;
+  font-size: 12px; font-weight: 700; margin-left: auto;
+}
+.tc-chevron {
+  width: 18px; height: 18px; margin-left: 8px;
+  transition: transform 0.2s;
+}
+.theme-card.collapsed .tc-chevron { transform: rotate(-90deg); }
+.theme-card-body { display: block; }
+.theme-card.collapsed .theme-card-body { display: none; }
+.tc-table-wrap { overflow-x: auto; }
+
+/* ── KEYWORD VIEW ── */
+.kw-cloud {
+  display: flex; flex-wrap: wrap; gap: 9px;
+  padding: 20px; background: var(--white);
+  border: 1px solid var(--border); border-radius: var(--r);
+  margin-bottom: 20px; box-shadow: var(--shadow-sm);
+}
+.kw-tag {
+  padding: 6px 14px; border-radius: 20px;
+  background: var(--cream-dark); color: var(--text-mid);
+  font-size: 13px; font-weight: 600; cursor: pointer;
+  border: 1.5px solid var(--cream-dark);
+  transition: all 0.14s;
+}
+.kw-tag:hover, .kw-tag.active { background: var(--navy); color: var(--white); border-color: var(--navy); }
+.kw-tag span { font-size: 11px; opacity: 0.6; margin-left: 4px; }
+
+/* ── CONFIG MODAL ── */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(10,22,40,0.65);
+  z-index: 500; display: flex;
+  align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.2s;
+}
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+.modal {
+  background: var(--white); border-radius: 14px;
+  width: 90%; max-width: 540px;
+  box-shadow: var(--shadow-lg);
+  transform: scale(0.94) translateY(16px);
+  transition: transform 0.22s cubic-bezier(0.34,1.3,0.64,1);
+  overflow: hidden;
+}
+.modal-overlay.open .modal { transform: scale(1) translateY(0); }
+.modal-header {
+  background: var(--navy); color: var(--white);
+  padding: 18px 22px;
+  display: flex; align-items: center; gap: 12px;
+}
+.modal-header h2 { font-size: 16px; font-weight: 600; }
+.modal-close {
+  margin-left: auto; background: none; border: none;
+  color: rgba(255,255,255,0.6); cursor: pointer;
+  padding: 4px; border-radius: 6px;
+  display: flex; align-items: center;
+  transition: all 0.15s;
+}
+.modal-close:hover { color: var(--white); background: rgba(255,255,255,0.12); }
+.modal-close svg { width: 19px; height: 19px; }
+.modal-body { padding: 24px 22px; }
+.form-group { margin-bottom: 18px; }
+.form-label {
+  display: block; font-size: 13px; font-weight: 600;
+  color: var(--text-mid); margin-bottom: 7px;
+}
+.form-input {
+  width: 100%; padding: 10px 13px;
+  border: 1.5px solid var(--border-mid);
+  border-radius: 8px;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 14px; color: var(--text-dark);
+  background: var(--cream); outline: none;
+  transition: border-color 0.15s;
+}
+.form-input:focus { border-color: var(--gold); background: var(--white); }
+.form-hint { font-size: 12px; color: var(--text-muted); margin-top: 5px; }
+.form-hint a { color: var(--navy); }
+.modal-footer {
+  padding: 16px 22px;
+  border-top: 1px solid var(--border);
+  display: flex; justify-content: flex-end; gap: 9px;
+}
+.steps-box {
+  background: var(--cream-dark);
+  border-radius: 8px; padding: 14px 16px;
+  margin-bottom: 18px;
+}
+.steps-box ol { padding-left: 18px; }
+.steps-box li { font-size: 13px; color: var(--text-mid); margin-bottom: 5px; line-height: 1.5; }
+.steps-box li a { color: var(--navy); font-weight: 600; }
+
+/* ── CHATBOT ── */
+#chatBtn {
+  position: fixed; bottom: 26px; right: 26px; z-index: 300;
+  width: 58px; height: 58px; border-radius: 50%;
+  background: var(--navy); color: var(--white);
+  border: none; cursor: pointer;
+  box-shadow: var(--shadow-lg);
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+}
+#chatBtn:hover { background: var(--navy-light); transform: scale(1.06); }
+#chatBtn svg { width: 26px; height: 26px; }
+.chat-badge {
+  position: absolute; top: -4px; right: -4px;
+  background: var(--gold); color: var(--navy);
+  width: 20px; height: 20px; border-radius: 50%;
+  font-size: 11px; font-weight: 700;
+  display: none; align-items: center; justify-content: center;
+}
+#chatWindow {
+  position: fixed; bottom: 96px; right: 26px;
+  width: 372px; height: 545px;
+  background: var(--white); border-radius: 16px;
+  box-shadow: var(--shadow-lg);
+  display: flex; flex-direction: column; z-index: 300;
+  overflow: hidden; border: 1px solid var(--border);
+  transform: scale(0.92) translateY(20px);
+  opacity: 0; pointer-events: none;
+  transition: all 0.22s cubic-bezier(0.34,1.3,0.64,1);
+}
+#chatWindow.open { transform: scale(1) translateY(0); opacity: 1; pointer-events: all; }
+.chat-hdr {
+  background: var(--navy); color: var(--white);
+  padding: 13px 17px;
+  display: flex; align-items: center; gap: 11px;
+  flex-shrink: 0;
+}
+.chat-avatar {
+  width: 37px; height: 37px; background: var(--gold);
+  border-radius: 50%; display: flex; align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700; font-size: 15px; color: var(--navy);
+  flex-shrink: 0;
+}
+.chat-hdr-txt h3 { font-size: 14px; font-weight: 600; }
+.chat-hdr-txt p { font-size: 11px; color: rgba(255,255,255,0.55); }
+.chat-x {
+  margin-left: auto; background: none; border: none;
+  color: rgba(255,255,255,0.55); cursor: pointer;
+  padding: 4px; border-radius: 6px;
+  display: flex; align-items: center;
+  transition: all 0.14s;
+}
+.chat-x:hover { color: var(--white); background: rgba(255,255,255,0.1); }
+.chat-x svg { width: 18px; height: 18px; }
+#chatMsgs {
+  flex: 1; overflow-y: auto;
+  padding: 15px; display: flex;
+  flex-direction: column; gap: 11px;
+  scroll-behavior: smooth;
+}
+#chatMsgs::-webkit-scrollbar { width: 4px; }
+#chatMsgs::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+.msg { max-width: 86%; font-size: 13.5px; line-height: 1.55; animation: msgIn 0.2s ease; }
+@keyframes msgIn { from { opacity: 0; transform: translateY(8px); } }
+.msg.bot { align-self: flex-start; }
+.msg.user { align-self: flex-end; }
+.msg-bbl { padding: 10px 13px; border-radius: 14px; }
+.msg.bot .msg-bbl { background: var(--cream-dark); color: var(--text-dark); border-bottom-left-radius: 4px; }
+.msg.user .msg-bbl { background: var(--navy); color: var(--white); border-bottom-right-radius: 4px; }
+.msg-time { font-size: 10px; color: var(--text-muted); margin-top: 3px; padding: 0 4px; }
+.msg.user .msg-time { text-align: right; }
+.chat-qr { display: flex; flex-wrap: wrap; gap: 6px; padding: 2px 4px 4px; }
+.qr-btn {
+  padding: 5px 11px; border: 1.5px solid var(--navy);
+  border-radius: 16px; font-size: 12px;
+  color: var(--navy); background: transparent;
+  cursor: pointer;
+  font-family: 'Source Sans 3', sans-serif;
+  transition: all 0.14s;
+}
+.qr-btn:hover { background: var(--navy); color: var(--white); }
+.typing {
+  display: flex; gap: 5px; align-items: center;
+  padding: 10px 13px;
+  background: var(--cream-dark);
+  border-radius: 14px 14px 14px 4px;
+  width: fit-content; align-self: flex-start;
+}
+.t-dot {
+  width: 7px; height: 7px; background: var(--text-muted);
+  border-radius: 50%; animation: bounce 1.2s infinite;
+}
+.t-dot:nth-child(2) { animation-delay: 0.2s; }
+.t-dot:nth-child(3) { animation-delay: 0.4s; }
+@keyframes bounce { 0%,60%,100%{transform:translateY(0)} 30%{transform:translateY(-6px)} }
+.chat-inp-area {
+  padding: 11px 13px; border-top: 1px solid var(--border);
+  display: flex; gap: 8px; align-items: flex-end;
+  flex-shrink: 0; background: var(--white);
+}
+#chatInput {
+  flex: 1; padding: 9px 13px;
+  border: 1.5px solid var(--border-mid);
+  border-radius: 20px;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 13px; outline: none;
+  resize: none; max-height: 80px; line-height: 1.5;
+  transition: border-color 0.14s;
+}
+#chatInput:focus { border-color: var(--gold); }
+#sendBtn {
+  width: 37px; height: 37px; border-radius: 50%;
+  background: var(--navy); color: var(--white);
+  border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; transition: background 0.14s;
+}
+#sendBtn:hover { background: var(--navy-light); }
+#sendBtn svg { width: 15px; height: 15px; }
+
+/* ── TOAST ── */
+.toast {
+  position: fixed; bottom: 26px; left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: var(--navy); color: var(--white);
+  padding: 11px 22px; border-radius: 8px;
+  font-size: 13px; font-weight: 600;
+  box-shadow: var(--shadow-md); z-index: 999;
+  transition: transform 0.28s ease;
+  white-space: nowrap;
+}
+.toast.show { transform: translateX(-50%) translateY(0); }
+.toast.ok { background: var(--green); }
+.toast.err { background: var(--red); }
+
+/* ── CHECKBOX ── */
+input[type="checkbox"] { width: 15px; height: 15px; accent-color: var(--navy); cursor: pointer; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 720px) {
+  main { padding: 18px 14px; }
+  .header-inner { padding: 12px 14px; }
+  .header-text h1 { font-size: 15px; }
+  #chatWindow { width: calc(100vw - 28px); right: 14px; }
+  .ord-title { max-width: 160px; }
+  thead th:nth-child(4), td:nth-child(4) { display: none; }
+}
+
+/* ── HELP NOTE ── */
+.help-note {
+  background: var(--gold-pale);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 13px 16px;
+  font-size: 13px;
+  color: var(--text-mid);
+  margin-bottom: 22px;
+  line-height: 1.6;
+}
+.help-note strong { color: var(--navy); }
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header>
+  <div class="header-inner">
+    <div class="escudo">M</div>
+    <div class="header-text">
+      <h1>Digesto de Ordenanzas Municipales</h1>
+      <p>Municipalidad de Concepción &middot; Tucumán</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn btn-outline btn-sm" onclick="openConfig()">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/></svg>
+        Configurar
+      </button>
+      <button class="btn btn-outline" id="btnUpdate" onclick="triggerUpdate()">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99"/></svg>
+        Actualizar
+      </button>
+      <button class="btn btn-primary" onclick="downloadSelected()">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
+        Descargar (<span id="dlCount">0</span>)
+      </button>
+    </div>
+  </div>
+  <!-- TABS -->
+  <div class="tabs">
+    <div class="tabs-inner">
+      <button class="tab-btn active" onclick="switchTab('list', this)">Índice General</button>
+      <button class="tab-btn" onclick="switchTab('themes', this)">Por Temática</button>
+      <button class="tab-btn" onclick="switchTab('keywords', this)">Por Palabras Clave</button>
+    </div>
+  </div>
+</header>
+
+<!-- ── MAIN ── -->
+<main>
+
+  <!-- STATUS BAR -->
+  <div class="status-bar" id="statusBar">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99"/></svg>
+    <span id="statusText">Iniciando sistema...</span>
+  </div>
+
+  <!-- DIAGNÓSTICO CORS -->
+  <div id="diagPanel" style="display:none; background:#fff8e1; border:1px solid #ffe082; border-radius:10px; padding:18px 20px; margin-bottom:20px; font-size:13px; color:#5d4037; line-height:1.7">
+    <strong style="font-size:14px; color:#e65100; display:block; margin-bottom:8px">⚠ No se pudo conectar con Google Drive</strong>
+    El error <em>"Failed to fetch"</em> ocurre porque el navegador bloquea llamadas directas a la API de Google Drive cuando la app se abre como archivo local (<code>file://</code>). Para solucionarlo, la app necesita estar publicada en un servidor web.<br><br>
+    <strong style="color:#1a237e">✅ Solución más rápida — GitHub Pages (gratis):</strong>
+    <ol style="margin: 8px 0 0 18px">
+      <li>Ir a <a href="https://github.com" target="_blank" style="color:#1565c0">github.com</a> → Crear cuenta o iniciar sesión</li>
+      <li>Crear repositorio nuevo → marcar como <strong>Public</strong></li>
+      <li>Subir el archivo <code>ordenanzas_concepcion.html</code></li>
+      <li>Ir a <strong>Settings → Pages</strong> → Source: rama <code>main</code></li>
+      <li>La URL pública será: <code>https://TU_USUARIO.github.io/REPO/ordenanzas_concepcion.html</code></li>
+    </ol>
+    <br>
+    <strong style="color:#1a237e">✅ También verificar en Google Cloud Console:</strong>
+    <ol style="margin: 8px 0 0 18px">
+      <li>Ir a <a href="https://console.cloud.google.com/apis/credentials" target="_blank" style="color:#1565c0">APIs y servicios → Credenciales</a></li>
+      <li>Seleccionar la API Key → <strong>Restricciones de aplicaciones</strong></li>
+      <li>Elegir <strong>"Ninguna"</strong> o <strong>"Sitios web HTTP"</strong> y agregar el dominio donde se aloje la app</li>
+      <li>Verificar que la <strong>Google Drive API</strong> esté habilitada en el proyecto</li>
+      <li>Confirmar que la carpeta Drive esté compartida como <strong>"Cualquiera con el enlace puede ver"</strong></li>
+    </ol>
+    <br>
+    <span style="color:#2e7d32">Mientras tanto la app funciona con el <strong>catálogo de demostración</strong> con 30 ordenanzas de ejemplo.</span>
+    <button onclick="document.getElementById('diagPanel').style.display='none'" style="float:right; background:none; border:1px solid #bcaaa4; border-radius:6px; padding:4px 12px; font-size:12px; cursor:pointer; color:#5d4037; margin-top:-4px">Cerrar</button>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat-card">
+      <div class="stat-num" id="stTotal">—</div>
+      <div class="stat-label">Total ordenanzas</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" id="stCats">—</div>
+      <div class="stat-label">Temáticas</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" id="stSel">0</div>
+      <div class="stat-label">Seleccionadas</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" id="stYear">—</div>
+      <div class="stat-label">Última actualiz.</div>
+    </div>
+  </div>
+
+  <!-- ══ TAB: LISTA ══ -->
+  <div class="view-panel active" id="panel-list">
+    <div class="search-section">
+      <div class="section-label">Buscar ordenanza</div>
+      <div class="search-row">
+        <div class="search-wrap">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/></svg>
+          <input type="text" id="searchInput" placeholder="Número, título, temática, año...">
+        </div>
+        <select class="sel" id="catFilter" onchange="applyFilters()">
+          <option value="">Todas las temáticas</option>
+        </select>
+        <select class="sel" id="yearFilter" onchange="applyFilters()">
+          <option value="">Todos los años</option>
+        </select>
+        <button class="btn btn-ghost btn-sm" onclick="clearFilters()">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/></svg>
+          Limpiar
+        </button>
+      </div>
+      <div class="filter-tags" id="filterTags"></div>
+    </div>
+
+    <div class="results-bar">
+      <span>Mostrando <b id="showCount">0</b> ordenanzas</span>
+      <div class="sel-actions">
+        <button class="btn btn-sm btn-navy" onclick="selectAll()">Selec. todo</button>
+        <button class="btn btn-sm btn-ghost" onclick="clearSelection()">Limpiar sel.</button>
+      </div>
+    </div>
+
+    <div class="table-wrap" id="tableContainer">
+      <div class="state-box"><div class="spinner"></div><p>Cargando ordenanzas...</p></div>
+    </div>
+    <div class="pagination" id="pagination"></div>
+  </div>
+
+  <!-- ══ TAB: TEMÁTICAS ══ -->
+  <div class="view-panel" id="panel-themes">
+    <div class="search-section" style="margin-bottom:20px">
+      <div class="section-label">Buscar dentro de las temáticas</div>
+      <div class="search-row">
+        <div class="search-wrap">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/></svg>
+          <input type="text" id="searchInputTheme" placeholder="Buscar en todas las temáticas...">
+        </div>
+        <button class="btn btn-ghost btn-sm" onclick="document.getElementById('searchInputTheme').value=''; renderThemes()">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/></svg>
+          Limpiar
+        </button>
+      </div>
+    </div>
+    <div class="theme-grid" id="themeGrid">
+      <div class="state-box"><div class="spinner"></div><p>Cargando...</p></div>
+    </div>
+  </div>
+
+  <!-- ══ TAB: PALABRAS CLAVE ══ -->
+  <div class="view-panel" id="panel-keywords">
+    <div class="help-note">
+      <strong>Nube de palabras clave.</strong> Haga clic en una palabra para filtrar las ordenanzas que la contienen.
+      Las palabras se extraen automáticamente de los nombres de los archivos.
+    </div>
+    <div class="kw-cloud" id="kwCloud">
+      <div class="state-box" style="padding:20px"><p>Cargando palabras clave...</p></div>
+    </div>
+    <div id="kwResults" style="display:none">
+      <div class="results-bar">
+        <span>Resultados para: <b id="kwActive">—</b> &nbsp;(<b id="kwCount">0</b> ordenanzas)</span>
+        <button class="btn btn-sm btn-ghost" onclick="clearKw()">Ver todas</button>
+      </div>
+      <div class="table-wrap" id="kwTableContainer"></div>
+    </div>
+  </div>
+
+</main>
+
+<!-- ── CHATBOT BUTTON ── -->
+<button id="chatBtn" onclick="toggleChat()" title="Consultar asistente IA">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095 48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0 0 11.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg>
+  <span class="chat-badge" id="chatBadge">!</span>
+</button>
+
+<!-- ── CHAT WINDOW ── -->
+<div id="chatWindow">
+  <div class="chat-hdr">
+    <div class="chat-avatar">A</div>
+    <div class="chat-hdr-txt">
+      <h3>Asistente Municipal</h3>
+      <p>Ordenanzas de Concepción, Tucumán</p>
+    </div>
+    <button class="chat-x" onclick="toggleChat()">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div id="chatMsgs"></div>
+  <div class="chat-inp-area">
+    <textarea id="chatInput" placeholder="Escriba su consulta..." rows="1"
+      onkeydown="chatKey(event)" oninput="autoRes(this)"></textarea>
+    <button id="sendBtn" onclick="sendMsg()" title="Enviar">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.77 59.77 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- ── CONFIG MODAL ── -->
+<div class="modal-overlay" id="configModal">
+  <div class="modal">
+    <div class="modal-header">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:20px;height:20px"><path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/></svg>
+      <h2>Configuración — Google Drive y Chatbot IA</h2>
+      <button class="modal-close" onclick="closeConfig()">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="steps-box">
+        <p style="font-weight:600;font-size:13px;margin-bottom:8px;color:var(--navy)">Pasos para obtener la API Key:</p>
+        <ol>
+          <li>Ingresar a <a href="https://console.cloud.google.com" target="_blank">console.cloud.google.com</a></li>
+          <li>Crear o seleccionar un proyecto</li>
+          <li>Ir a <strong>APIs y servicios → Credenciales</strong></li>
+          <li>Clic en <strong>Crear credenciales → Clave de API</strong></li>
+          <li>Restringir la clave a la <strong>Google Drive API</strong></li>
+          <li>Asegurarse que la carpeta de Drive sea <strong>pública</strong> (compartida como "Cualquiera con el enlace puede ver")</li>
+        </ol>
+      </div>
+      <div class="form-group">
+        <label class="form-label">API Key de Google Drive</label>
+        <input type="text" class="form-input" id="cfgApiKey" placeholder="AIzaSy...">
+        <p class="form-hint">La clave se guarda solo en este navegador (localStorage). No se envía a ningún servidor externo.</p>
+      </div>
+      <div class="form-group">
+        <label class="form-label">ID de la carpeta de Google Drive</label>
+        <input type="text" class="form-input" id="cfgFolderId" placeholder="1TE0JU_8whyTpz5xtHs6_edZYIiPHoOuZ">
+        <p class="form-hint">Es la parte de la URL de Drive después de <code>/folders/</code></p>
+      </div>
+      <div class="form-group">
+        <label class="form-label">API Key de Gemini (Google AI) — para el chatbot</label>
+        <input type="text" class="form-input" id="cfgGeminiKey" placeholder="AQ.Ab8R...">
+        <p class="form-hint">Necesaria para el asistente IA. Obtenerla en <a href="https://aistudio.google.com/app/apikey" target="_blank">aistudio.google.com</a></p>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeConfig()">Cancelar</button>
+      <button class="btn btn-primary" onclick="saveConfig()">Guardar y Actualizar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── TOAST ── -->
+<div class="toast" id="toast"></div>
+
+<!-- ═══════════════════════════════════════════ SCRIPT ═══ -->
+<script>
+// ── CONFIGURATION ──────────────────────────────────────────
+let CFG = {
+  folderId: '1TE0JU_8whyTpz5xtHs6_edZYIiPHoOuZ',
+  driveKey: 'AIzaSyCCeImCDJ2SkzYPye7dzlGKq4FqRKd_3D8',
+  geminiKey: 'AQ.Ab8RN6KqRjo0yE72rCrc0Dm9_BXB9OM1ulCSmUCxeWoPsxSjxw'
+};
+
+function loadCfg() {
+  try {
+    const s = localStorage.getItem('muni_cfg');
+    if (s) CFG = { ...CFG, ...JSON.parse(s) };
+  } catch(e) {}
+}
+function saveCfg() {
+  localStorage.setItem('muni_cfg', JSON.stringify(CFG));
+}
+
+// ── STATE ──────────────────────────────────────────────────
+let allOrdenanzas = [];
+let filteredOrdenanzas = [];
+let selectedIds = new Set();
+let currentPage = 1;
+const PAGE_SIZE = 20;
+let chatHistory = [];
+let chatOpen = false;
+let chatReady = false;
+
+// ── KEYWORD CLASSIFICATION ─────────────────────────────────
+const CATS = {
+  'Urbanismo':      ['urbanismo','construcci','edifici','obra','uso de suelo','zonificaci','catastro','parcelam','mensura','plano','predio','inmueble','fraccionam','solar','lote'],
+  'Tránsito':       ['tránsito','transit','vehicul','automotor','transporte','taxi','remis','estacionam','semáforo','circulaci','conductor','licencia de conducir','vialidad','tráfico'],
+  'Medio Ambiente': ['ambiental','residuo','basura','arbolado','verde','parque','contaminaci','ecolog','sustentable','natura','animales','fauna','flora','veterinar','zoonosis'],
+  'Salud':          ['salud','sanidad','bromatolog','aliment','higiene','hospital','médic','enferm','vacun','epidemia','farmaci','droga','narcótic','alcohol'],
+  'Hacienda':       ['presupuesto','tasas','impuesto','tributo','contribuci','finanza','contable','auditor','licitaci','contrato','gasto','recurso','deuda','erogaci','ingreso fiscal'],
+  'Educación':      ['educaci','escuela','colegio','enseñanza','docente','alumno','cultura','biblioteca','deporte','recreaci','museo','patrimonio','histori'],
+  'Seguridad':      ['seguridad','policía','guardia','vigilancia','emergencia','bombero','defensa civil','protocolo','prevenci'],
+  'Comercio':       ['comercio','negocio','habilitaci','local','mercado','feria','ventas','publicidad','propaganda','empresa','industria','emprendim','licencia comercial'],
+  'Obras Públicas': ['obra pública','pavimento','iluminaci','cloaca','agua potable','gas','tendido','infraestructura','plaza','paseo','veredas','red vial','alumbrado'],
+  'General':        []
+};
+
+const CAT_ICONS = {
+  'Urbanismo':'🏙️','Tránsito':'🚗','Medio Ambiente':'🌿','Salud':'🏥','Hacienda':'💰',
+  'Educación':'📚','Seguridad':'🛡️','Comercio':'🏪','Obras Públicas':'🔧','General':'📄'
+};
+
+function classifyOrdenanza(name) {
+  const txt = name.toLowerCase();
+  for (const [cat, kws] of Object.entries(CATS)) {
+    if (cat === 'General') continue;
+    if (kws.some(k => txt.includes(k))) return cat;
+  }
+  return 'General';
+}
+
+function extractKeywords(name) {
+  const stops = new Set(['de','la','el','los','las','del','que','con','por','para','una','uno','en','se','y','a','o','e','u','su','sus','al','este','esta','estos','estas','sobre','hasta','desde','entre','sin','nro','ord','ordenanza','num','año']);
+  return [...new Set(
+    name.toLowerCase()
+      .replace(/ordenanza|nro?\.?|n°|núm\.?|\.pdf|\.docx?|\d+/gi,'')
+      .split(/[\s\-_\/\.]+/)
+      .filter(w => w.length > 3 && !stops.has(w))
+  )].slice(0, 6);
+}
+
+function extractNum(name) {
+  const m = name.match(/(\d{3,5})/);
+  return m ? m[1] : null;
+}
+
+function extractYear(name) {
+  const m = name.match(/20\d{2}|19\d{2}/);
+  return m ? m[0] : null;
+}
+
+function cleanTitle(name) {
+  return name.replace(/\.pdf|\.docx?|\.xlsx?/gi,'').replace(/[_\-]/g,' ').trim();
+}
+
+function getBadge(cat) {
+  const m = {'Urbanismo':'b-urbanismo','Tránsito':'b-transito','Medio Ambiente':'b-ambiente',
+    'Salud':'b-salud','Hacienda':'b-hacienda','Educación':'b-educacion','Seguridad':'b-seguridad',
+    'Obras Públicas':'b-obras','Comercio':'b-comercio','General':'b-general'};
+  return m[cat] || 'b-general';
+}
+
+// ── GOOGLE DRIVE FETCH ──────────────────────────────────────
+async function fetchFromDrive() {
+  if (!CFG.driveKey) {
+    setStatus('⚠ Sin API Key de Google Drive — usando catálogo de demostración.', 'warning');
+    return buildFromDemo();
+  }
+
+  // Estrategia 1: Drive API v3 directa (funciona desde servidores web / GitHub Pages)
+  const url = `https://www.googleapis.com/drive/v3/files`
+    + `?q='${CFG.folderId}'+in+parents+and+trashed=false`
+    + `&fields=files(id,name,mimeType,modifiedTime,webViewLink,webContentLink)`
+    + `&pageSize=1000`
+    + `&key=${CFG.driveKey}`;
+
+  let files = [];
+  let lastError = '';
+
+  try {
+    const resp = await fetch(url, {
+      method: 'GET',
+      headers: { 'Accept': 'application/json' },
+      mode: 'cors'
+    });
+    if (resp.ok) {
+      const data = await resp.json();
+      if (data.error) throw new Error(data.error.message);
+      files = data.files || [];
+    } else {
+      const errData = await resp.json().catch(()=>({}));
+      lastError = errData.error?.message || `HTTP ${resp.status}`;
+      throw new Error(lastError);
+    }
+  } catch(e) {
+    lastError = e.message || 'Error de red';
+    // Estrategia 2: usar proxy CORS público como fallback
+    try {
+      const proxyUrl = `https://corsproxy.io/?` + encodeURIComponent(url);
+      const resp2 = await fetch(proxyUrl);
+      if (resp2.ok) {
+        const data2 = await resp2.json();
+        files = data2.files || [];
+        lastError = '';
+      }
+    } catch(e2) {
+      // ambas estrategias fallaron
+    }
+  }
+
+  // Si ambas fallaron, dar diagnóstico claro y usar demo
+  if (!files.length && lastError) {
+    let msg = '';
+    if (lastError.includes('CORS') || lastError.includes('fetch') || lastError.includes('Failed')) {
+      msg = '⚠ Error de CORS: la app debe estar en un servidor web (no como archivo local). Usando demo.';
+    } else if (lastError.includes('400') || lastError.includes('keyInvalid')) {
+      msg = '⚠ API Key de Drive inválida o sin permisos. Verificar en Google Cloud Console.';
+    } else if (lastError.includes('403')) {
+      msg = '⚠ Acceso denegado (403). Verificar que la carpeta sea pública y la API Key tenga Drive habilitado.';
+    } else if (lastError.includes('404')) {
+      msg = '⚠ Carpeta no encontrada (404). Verificar el ID de la carpeta.';
+    } else {
+      msg = `⚠ Error Drive: ${lastError}. Usando catálogo de demostración.`;
+    }
+    setStatus(msg, 'error');
+    return buildFromDemo();
+  }
+
+  // Filtrar solo documentos
+  const docs = files.filter(f =>
+    f.mimeType && (
+      f.mimeType.includes('pdf') ||
+      f.mimeType.includes('word') ||
+      f.mimeType.includes('document') ||
+      f.mimeType.includes('msword') ||
+      f.name?.match(/\.(pdf|doc|docx)$/i)
+    )
+  );
+
+  if (docs.length === 0) {
+    setStatus('⚠ La carpeta no contiene archivos PDF/DOC visibles. Verifique que sea pública.', 'error');
+    return buildFromDemo();
+  }
+
+  return docs.map(f => buildOrd(f));
+}
+
+function buildOrd(f) {
+  const cat = classifyOrdenanza(f.name || '');
+  const num = extractNum(f.name || '');
+  const year = extractYear(f.name || '') || (f.modifiedTime ? new Date(f.modifiedTime).getFullYear().toString() : '');
+  return {
+    id: f.id,
+    name: f.name,
+    number: num || '—',
+    title: cleanTitle(f.name),
+    category: cat,
+    year: year,
+    keywords: extractKeywords(f.name || ''),
+    viewLink: f.webViewLink || `https://drive.google.com/file/d/${f.id}/view`,
+    downloadLink: f.webContentLink || `https://drive.google.com/uc?export=download&id=${f.id}`,
+    modified: f.modifiedTime ? new Date(f.modifiedTime).toLocaleDateString('es-AR') : '—'
+  };
+}
+
+function buildFromDemo() {
+  const demo = [
+    {id:'d1',name:'Ordenanza_5821_2024_Codigo_Urbanistico.pdf',mimeType:'application/pdf',modifiedTime:'2024-11-15'},
+    {id:'d2',name:'Ordenanza_5820_2024_Transito_Vehiculos_Automotores.pdf',mimeType:'application/pdf',modifiedTime:'2024-10-20'},
+    {id:'d3',name:'Ordenanza_5815_2024_Gestion_Residuos_Ambiental.pdf',mimeType:'application/pdf',modifiedTime:'2024-09-30'},
+    {id:'d4',name:'Ordenanza_5810_2024_Presupuesto_Anual_Hacienda.pdf',mimeType:'application/pdf',modifiedTime:'2024-09-01'},
+    {id:'d5',name:'Ordenanza_5808_2024_Habilitacion_Comercial_Locales.pdf',mimeType:'application/pdf',modifiedTime:'2024-08-20'},
+    {id:'d6',name:'Ordenanza_5805_2024_Obra_Publica_Pavimento_Vial.pdf',mimeType:'application/pdf',modifiedTime:'2024-08-15'},
+    {id:'d7',name:'Ordenanza_5799_2024_Seguridad_Guardia_Urbana.pdf',mimeType:'application/pdf',modifiedTime:'2024-07-10'},
+    {id:'d8',name:'Ordenanza_5795_2024_Salud_Bromatologia_Alimentos.pdf',mimeType:'application/pdf',modifiedTime:'2024-07-01'},
+    {id:'d9',name:'Ordenanza_5790_2024_Educacion_Cultura_Museos.pdf',mimeType:'application/pdf',modifiedTime:'2024-06-15'},
+    {id:'d10',name:'Ordenanza_5785_2023_Tasas_Municipales_Impuestos.pdf',mimeType:'application/pdf',modifiedTime:'2023-12-10'},
+    {id:'d11',name:'Ordenanza_5780_2023_Arbolado_Urbano_Ambiental.pdf',mimeType:'application/pdf',modifiedTime:'2023-11-20'},
+    {id:'d12',name:'Ordenanza_5775_2023_Codigo_Edificacion_Urbanismo.pdf',mimeType:'application/pdf',modifiedTime:'2023-10-05'},
+    {id:'d13',name:'Ordenanza_5770_2023_Estacionamiento_Medido_Transito.pdf',mimeType:'application/pdf',modifiedTime:'2023-09-12'},
+    {id:'d14',name:'Ordenanza_5765_2023_Mercado_Municipal_Comercio.pdf',mimeType:'application/pdf',modifiedTime:'2023-08-25'},
+    {id:'d15',name:'Ordenanza_5760_2023_Emergencia_Sanitaria_Salud.pdf',mimeType:'application/pdf',modifiedTime:'2023-07-30'},
+    {id:'d16',name:'Ordenanza_5755_2022_Zonificacion_Usos_Suelo_Urbanismo.pdf',mimeType:'application/pdf',modifiedTime:'2022-12-20'},
+    {id:'d17',name:'Ordenanza_5750_2022_Transporte_Publico_Remis_Transito.pdf',mimeType:'application/pdf',modifiedTime:'2022-11-15'},
+    {id:'d18',name:'Ordenanza_5745_2022_Animales_Domesticos_Zoonosis.pdf',mimeType:'application/pdf',modifiedTime:'2022-10-01'},
+    {id:'d19',name:'Ordenanza_5740_2022_Publicidad_Propaganda_Comercio.pdf',mimeType:'application/pdf',modifiedTime:'2022-09-10'},
+    {id:'d20',name:'Ordenanza_5735_2022_Infraestructura_Cloacas_Obras.pdf',mimeType:'application/pdf',modifiedTime:'2022-08-05'},
+    {id:'d21',name:'Ordenanza_5730_2022_Habilitacion_Industria_Comercio.pdf',mimeType:'application/pdf',modifiedTime:'2022-07-12'},
+    {id:'d22',name:'Ordenanza_5725_2021_Patrimonio_Historico_Educacion.pdf',mimeType:'application/pdf',modifiedTime:'2021-12-28'},
+    {id:'d23',name:'Ordenanza_5720_2021_Alumbrado_Publico_Obras.pdf',mimeType:'application/pdf',modifiedTime:'2021-11-20'},
+    {id:'d24',name:'Ordenanza_5715_2021_Contrataciones_Licitaciones_Hacienda.pdf',mimeType:'application/pdf',modifiedTime:'2021-10-15'},
+    {id:'d25',name:'Ordenanza_5710_2021_Plazas_Espacios_Verdes_Urbanismo.pdf',mimeType:'application/pdf',modifiedTime:'2021-09-05'},
+    {id:'d26',name:'Ordenanza_5705_2020_Presupuesto_Extraordinario.pdf',mimeType:'application/pdf',modifiedTime:'2020-12-01'},
+    {id:'d27',name:'Ordenanza_5700_2020_Protocolo_Covid_Salud.pdf',mimeType:'application/pdf',modifiedTime:'2020-06-10'},
+    {id:'d28',name:'Ordenanza_5695_2020_Comercio_Electronico_Habilitacion.pdf',mimeType:'application/pdf',modifiedTime:'2020-03-15'},
+    {id:'d29',name:'Ordenanza_5688_2019_Red_Vial_Transito.pdf',mimeType:'application/pdf',modifiedTime:'2019-11-20'},
+    {id:'d30',name:'Ordenanza_5680_2019_Codigo_Urbanistico_Actualizacion.pdf',mimeType:'application/pdf',modifiedTime:'2019-08-05'},
+  ];
+  return demo.map(f => buildOrd({ ...f, webViewLink: `https://drive.google.com/drive/folders/${CFG.folderId}`, webContentLink: `https://drive.google.com/drive/folders/${CFG.folderId}` }));
+}
+
+// ── LOAD & UPDATE ───────────────────────────────────────────
+async function loadOrdenanzas() {
+  setStatus('Conectando con Google Drive...', 'loading');
+  showLoading();
+  try {
+    let ords = await fetchFromDrive();
+    ords.sort((a,b) => (parseInt(b.number)||0) - (parseInt(a.number)||0));
+    allOrdenanzas = ords;
+    filteredOrdenanzas = [...ords];
+    updateStats();
+    populateFilters();
+    applyFilters();
+    renderThemes();
+    renderKeywords();
+    if (CFG.driveKey) {
+      setStatus(`✓ Catálogo actualizado desde Google Drive — ${ords.length} ordenanzas cargadas — ${new Date().toLocaleString('es-AR')}`, 'success');
+    }
+    return true;
+  } catch(err) {
+    console.error('Drive error:', err);
+    const msg = err.message || 'Error desconocido';
+    const isCors = msg.includes('fetch') || msg.includes('CORS') || msg.includes('Failed') || msg.toLowerCase().includes('network');
+    if (isCors) {
+      setStatus('⚠ Error de CORS/red: la app debe publicarse en un servidor web para acceder a Drive.', 'error');
+    } else {
+      setStatus(`⚠ Error al conectar con Drive: ${msg}. Usando datos de demostración.`, 'error');
+    }
+    // Siempre mostrar el panel de diagnóstico ante cualquier fallo de Drive
+    const diag = document.getElementById('diagPanel');
+    if (diag) diag.style.display = 'block';
+    allOrdenanzas = buildFromDemo();
+    filteredOrdenanzas = [...allOrdenanzas];
+    updateStats(); populateFilters(); applyFilters(); renderThemes(); renderKeywords();
+    return false;
+  }
+}
+
+async function triggerUpdate() {
+  const btn = document.getElementById('btnUpdate');
+  btn.disabled = true;
+  btn.innerHTML = `<span style="display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,0.4);border-top-color:white;border-radius:50%;animation:spin 0.7s linear infinite;vertical-align:middle;margin-right:5px"></span>Actualizando...`;
+  selectedIds.clear(); updateSelUI();
+  await loadOrdenanzas();
+  btn.disabled = false;
+  btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99"/></svg> Actualizar`;
+}
+
+function showLoading() {
+  document.getElementById('tableContainer').innerHTML = '<div class="state-box"><div class="spinner"></div><p>Cargando ordenanzas...</p><small>Clasificando por temática y palabras clave</small></div>';
+}
+
+// ── STATS ───────────────────────────────────────────────────
+function updateStats() {
+  document.getElementById('stTotal').textContent = allOrdenanzas.length;
+  document.getElementById('stCats').textContent = new Set(allOrdenanzas.map(o=>o.category)).size;
+  document.getElementById('stYear').textContent = new Date().toLocaleDateString('es-AR',{day:'2-digit',month:'2-digit'});
+}
+function updateSelUI() {
+  const n = selectedIds.size;
+  document.getElementById('stSel').textContent = n;
+  document.getElementById('dlCount').textContent = n;
+}
+
+// ── STATUS BAR ──────────────────────────────────────────────
+function setStatus(msg, type='info') {
+  const bar = document.getElementById('statusBar');
+  document.getElementById('statusText').textContent = msg;
+  bar.className = 'status-bar' + (type==='success'?' success':type==='error'?' error':'');
+  // Mostrar panel de diagnóstico si es error de conexión con Drive
+  const diag = document.getElementById('diagPanel');
+  if (diag) {
+    const showDiag = type === 'error' && (msg.includes('CORS') || msg.includes('fetch') || msg.includes('Failed') || msg.includes('403') || msg.includes('400') || msg.includes('inválida'));
+    diag.style.display = showDiag ? 'block' : 'none';
+  }
+}
+
+// ── FILTERS ─────────────────────────────────────────────────
+function populateFilters() {
+  const cats = [...new Set(allOrdenanzas.map(o=>o.category))].sort();
+  const years = [...new Set(allOrdenanzas.map(o=>o.year).filter(Boolean))].sort((a,b)=>b-a);
+
+  document.getElementById('catFilter').innerHTML =
+    '<option value="">Todas las temáticas</option>' + cats.map(c=>`<option>${c}</option>`).join('');
+  document.getElementById('yearFilter').innerHTML =
+    '<option value="">Todos los años</option>' + years.map(y=>`<option>${y}</option>`).join('');
+
+  document.getElementById('filterTags').innerHTML = cats.map(c =>
+    `<span class="tag" data-cat="${c}" onclick="toggleTag(this,'${c}')">${c} <small>${allOrdenanzas.filter(o=>o.category===c).length}</small></span>`
+  ).join('');
+}
+
+function toggleTag(el, cat) {
+  el.classList.toggle('active');
+  const actives = [...document.querySelectorAll('#filterTags .tag.active')].map(t=>t.dataset.cat);
+  document.getElementById('catFilter').value = actives.length ? actives[0] : '';
+  applyFilters();
+}
+
+function applyFilters() {
+  const q = document.getElementById('searchInput').value.toLowerCase().trim();
+  const cat = document.getElementById('catFilter').value;
+  const year = document.getElementById('yearFilter').value;
+  filteredOrdenanzas = allOrdenanzas.filter(o => {
+    const mQ = !q || o.number.toLowerCase().includes(q) || o.title.toLowerCase().includes(q) ||
+      o.category.toLowerCase().includes(q) || o.keywords.some(k=>k.includes(q)) || o.year.toString().includes(q);
+    return mQ && (!cat || o.category===cat) && (!year || o.year===year);
+  });
+  currentPage = 1;
+  renderTable();
+  renderPagination();
+  document.getElementById('showCount').textContent = filteredOrdenanzas.length;
+}
+
+function clearFilters() {
+  document.getElementById('searchInput').value = '';
+  document.getElementById('catFilter').value = '';
+  document.getElementById('yearFilter').value = '';
+  document.querySelectorAll('#filterTags .tag').forEach(t=>t.classList.remove('active'));
+  applyFilters();
+}
+
+// ── TABLE RENDER ─────────────────────────────────────────────
+function renderTable(ords, container) {
+  const list = ords || filteredOrdenanzas;
+  const wrap = container || document.getElementById('tableContainer');
+  if (list.length === 0) {
+    wrap.innerHTML = '<div class="state-box"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"/></svg><p>No se encontraron ordenanzas</p><small>Intente con otros términos</small></div>';
+    return;
+  }
+  const start = container ? 0 : (currentPage-1)*PAGE_SIZE;
+  const items = container ? list : list.slice(start, start+PAGE_SIZE);
+
+  wrap.innerHTML = `<div style="overflow-x:auto"><table>
+    <thead><tr>
+      <th></th><th>Nº Ord.</th><th>Denominación</th><th>Temática</th><th>Año</th><th style="min-width:110px">Acciones</th>
+    </tr></thead>
+    <tbody>${items.map(o => `
+      <tr onclick="toggleSel('${o.id}',event)" id="row-${o.id}" class="${selectedIds.has(o.id)?'selected':''}">
+        <td onclick="event.stopPropagation();toggleSel('${o.id}',event)">
+          <input type="checkbox" ${selectedIds.has(o.id)?'checked':''} onchange="toggleSel('${o.id}',event)">
+        </td>
+        <td><span class="ord-num">Nº ${o.number}</span></td>
+        <td><div class="ord-title">${o.title}<small>${o.keywords.slice(0,3).join(' · ')}</small></div></td>
+        <td><span class="badge ${getBadge(o.category)}">${o.category}</span></td>
+        <td style="color:var(--text-muted);white-space:nowrap">${o.year}</td>
+        <td>
+          <div style="display:flex;gap:5px;flex-wrap:nowrap">
+            <a href="${o.viewLink}" target="_blank" onclick="event.stopPropagation()" title="Ver" style="display:inline-flex;align-items:center;gap:5px;padding:5px 10px;border:1px solid var(--border-mid);border-radius:7px;background:var(--white);color:var(--text-mid);font-size:12px;font-weight:600;text-decoration:none;transition:background 0.14s" onmouseover="this.style.background='var(--cream-dark)'" onmouseout="this.style.background='var(--white)'">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:13px;height:13px"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/></svg>Ver
+            </a>
+            <a href="${o.downloadLink}" target="_blank" onclick="event.stopPropagation()" title="Descargar" style="display:inline-flex;align-items:center;gap:5px;padding:5px 10px;border-radius:7px;background:var(--gold);color:var(--navy);font-size:12px;font-weight:600;text-decoration:none;transition:background 0.14s" onmouseover="this.style.background='var(--gold-light)'" onmouseout="this.style.background='var(--gold)'">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:13px;height:13px"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>DL
+            </a>
+          </div>
+        </td>
+      </tr>`).join('')}
+    </tbody></table></div>`;
+}
+
+function renderPagination() {
+  const total = Math.ceil(filteredOrdenanzas.length / PAGE_SIZE);
+  const pg = document.getElementById('pagination');
+  if (total <= 1) { pg.innerHTML = ''; return; }
+  let h = `<button class="pg-btn" onclick="goPage(${currentPage-1})" ${currentPage===1?'disabled':''}>&#8249; Ant.</button>`;
+  for (let i=1; i<=total; i++) {
+    if (i===1||i===total||Math.abs(i-currentPage)<=1)
+      h += `<button class="pg-btn${i===currentPage?' active':''}" onclick="goPage(${i})">${i}</button>`;
+    else if (Math.abs(i-currentPage)===2)
+      h += `<span style="color:var(--text-muted);padding:0 3px">…</span>`;
+  }
+  h += `<button class="pg-btn" onclick="goPage(${currentPage+1})" ${currentPage===total?'disabled':''}>Sig. &#8250;</button>`;
+  pg.innerHTML = h;
+}
+
+function goPage(p) {
+  const total = Math.ceil(filteredOrdenanzas.length/PAGE_SIZE);
+  if (p<1||p>total) return;
+  currentPage = p;
+  renderTable(); renderPagination();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ── THEMES VIEW ──────────────────────────────────────────────
+function renderThemes() {
+  const q = (document.getElementById('searchInputTheme')?.value||'').toLowerCase().trim();
+  const cats = [...new Set(allOrdenanzas.map(o=>o.category))].sort();
+  const grid = document.getElementById('themeGrid');
+  if (!allOrdenanzas.length) return;
+
+  grid.innerHTML = cats.map(cat => {
+    let ords = allOrdenanzas.filter(o => o.category===cat);
+    if (q) ords = ords.filter(o => o.title.toLowerCase().includes(q)||o.number.includes(q)||o.keywords.some(k=>k.includes(q)));
+    if (ords.length===0 && q) return '';
+    return `<div class="theme-card" id="tc-${cat.replace(/\s/g,'_')}">
+      <div class="theme-card-header" onclick="toggleThemeCard('${cat.replace(/\s/g,'_')}')">
+        <span class="tc-icon">${CAT_ICONS[cat]||'📄'}</span>
+        <span class="tc-name">${cat}</span>
+        <span class="tc-count">${ords.length}</span>
+        <svg class="tc-chevron" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
+      </div>
+      <div class="theme-card-body">
+        <div class="tc-table-wrap" id="tc-body-${cat.replace(/\s/g,'_')}"></div>
+      </div>
+    </div>`;
+  }).join('');
+
+  // Render tables after DOM insert
+  cats.forEach(cat => {
+    let ords = allOrdenanzas.filter(o=>o.category===cat);
+    if (q) ords = ords.filter(o=>o.title.toLowerCase().includes(q)||o.number.includes(q)||o.keywords.some(k=>k.includes(q)));
+    const el = document.getElementById(`tc-body-${cat.replace(/\s/g,'_')}`);
+    if (el) renderTable(ords, el);
+  });
+}
+
+function toggleThemeCard(id) {
+  const card = document.getElementById(`tc-${id}`);
+  if (card) card.classList.toggle('collapsed');
+}
+
+document.addEventListener('DOMContentLoaded', ()=>{
+  const inp = document.getElementById('searchInputTheme');
+  if (inp) inp.addEventListener('input', ()=>{ clearTimeout(window._tq); window._tq=setTimeout(renderThemes,300); });
+});
+
+// ── KEYWORDS VIEW ─────────────────────────────────────────────
+let activeKw = null;
+function renderKeywords() {
+  const allKws = {};
+  allOrdenanzas.forEach(o => o.keywords.forEach(k => { allKws[k] = (allKws[k]||0)+1; }));
+  const sorted = Object.entries(allKws).filter(([k,c])=>c>0).sort((a,b)=>b[1]-a[1]).slice(0,60);
+
+  document.getElementById('kwCloud').innerHTML = sorted.map(([k,c]) =>
+    `<span class="kw-tag${activeKw===k?' active':''}" onclick="filterByKw('${k}')">${k} <span>${c}</span></span>`
+  ).join('');
+}
+
+function filterByKw(kw) {
+  if (activeKw === kw) { clearKw(); return; }
+  activeKw = kw;
+  renderKeywords();
+  const ords = allOrdenanzas.filter(o => o.keywords.includes(kw));
+  document.getElementById('kwActive').textContent = kw;
+  document.getElementById('kwCount').textContent = ords.length;
+  document.getElementById('kwResults').style.display = 'block';
+  renderTable(ords, document.getElementById('kwTableContainer'));
+}
+
+function clearKw() {
+  activeKw = null;
+  renderKeywords();
+  document.getElementById('kwResults').style.display = 'none';
+}
+
+// ── SELECTION & DOWNLOAD ──────────────────────────────────────
+function toggleSel(id, event) {
+  if (selectedIds.has(id)) selectedIds.delete(id);
+  else selectedIds.add(id);
+  updateSelUI();
+  const row = document.getElementById(`row-${id}`);
+  const cb = row?.querySelector('input[type=checkbox]');
+  if (row) row.classList.toggle('selected', selectedIds.has(id));
+  if (cb) cb.checked = selectedIds.has(id);
+}
+function selectAll() {
+  filteredOrdenanzas.forEach(o => selectedIds.add(o.id));
+  updateSelUI(); renderTable();
+}
+function clearSelection() {
+  selectedIds.clear(); updateSelUI(); renderTable();
+}
+function downloadSelected() {
+  if (!selectedIds.size) { showToast('Seleccione al menos una ordenanza','err'); return; }
+  const sel = allOrdenanzas.filter(o => selectedIds.has(o.id));
+  showToast(`Abriendo ${sel.length} archivo(s) en Drive...`, 'ok');
+  sel.forEach((o,i) => setTimeout(()=>window.open(o.viewLink,'_blank'), i*350));
+}
+
+// ── TABS ─────────────────────────────────────────────────────
+function switchTab(id, btn) {
+  document.querySelectorAll('.view-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ── CONFIG MODAL ──────────────────────────────────────────────
+function openConfig() {
+  document.getElementById('cfgApiKey').value = CFG.driveKey || '';
+  document.getElementById('cfgFolderId').value = CFG.folderId || '';
+  document.getElementById('cfgGeminiKey').value = CFG.geminiKey || '';
+  document.getElementById('configModal').classList.add('open');
+}
+function closeConfig() {
+  document.getElementById('configModal').classList.remove('open');
+}
+function saveConfig() {
+  CFG.driveKey = document.getElementById('cfgApiKey').value.trim();
+  CFG.folderId = document.getElementById('cfgFolderId').value.trim() || CFG.folderId;
+  CFG.geminiKey = document.getElementById('cfgGeminiKey').value.trim();
+  saveCfg();
+  closeConfig();
+  showToast('Configuración guardada. Actualizando...', 'ok');
+  triggerUpdate();
+}
+
+// ── TOAST ─────────────────────────────────────────────────────
+function showToast(msg, type='') {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.className = 'toast ' + type + ' show';
+  setTimeout(()=>el.classList.remove('show'), 3200);
+}
+
+// ── CHATBOT ───────────────────────────────────────────────────
+function toggleChat() {
+  chatOpen = !chatOpen;
+  document.getElementById('chatWindow').classList.toggle('open', chatOpen);
+  document.getElementById('chatBadge').style.display = 'none';
+  if (chatOpen && !chatReady) { chatReady = true; initChat(); }
+}
+
+function initChat() {
+  addBot('¡Hola! Soy el asistente municipal de Concepción, Tucumán. 👋\n\nEstoy aquí para ayudarte a consultar las <strong>ordenanzas municipales</strong> de nuestra ciudad.\n\n¿Qué necesitás consultar hoy?',
+    ['Ordenanzas de tránsito','Ordenanzas de obras','Habilitaciones comerciales','Buscar por número']);
+}
+
+function addBot(html, qrs=[]) {
+  const msgs = document.getElementById('chatMsgs');
+  const t = new Date().toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'});
+  const d = document.createElement('div');
+  d.className = 'msg bot';
+  d.innerHTML = `<div class="msg-bbl">${html.replace(/\n/g,'<br>')}</div><div class="msg-time">${t}</div>`;
+  if (qrs.length) {
+    const qrDiv = document.createElement('div');
+    qrDiv.className = 'chat-qr';
+    qrs.forEach(r => {
+      const b = document.createElement('button');
+      b.className = 'qr-btn'; b.textContent = r;
+      b.onclick = () => processMsg(r);
+      qrDiv.appendChild(b);
+    });
+    d.appendChild(qrDiv);
+  }
+  msgs.appendChild(d);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function addUser(text) {
+  const msgs = document.getElementById('chatMsgs');
+  const t = new Date().toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'});
+  const d = document.createElement('div');
+  d.className = 'msg user';
+  d.innerHTML = `<div class="msg-bbl">${escHtml(text)}</div><div class="msg-time">${t}</div>`;
+  msgs.appendChild(d);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function escHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function showTyping() {
+  const msgs = document.getElementById('chatMsgs');
+  const d = document.createElement('div');
+  d.id = 'typing'; d.className = 'typing';
+  d.innerHTML = '<div class="t-dot"></div><div class="t-dot"></div><div class="t-dot"></div>';
+  msgs.appendChild(d); msgs.scrollTop = msgs.scrollHeight;
+}
+function hideTyping() { document.getElementById('typing')?.remove(); }
+
+function chatKey(e) { if (e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();} }
+function autoRes(el) { el.style.height='auto'; el.style.height=Math.min(el.scrollHeight,80)+'px'; }
+
+function sendMsg() {
+  const inp = document.getElementById('chatInput');
+  const t = inp.value.trim();
+  if (!t) return;
+  inp.value = ''; inp.style.height = 'auto';
+  processMsg(t);
+}
+
+async function processMsg(text) {
+  addUser(text);
+  chatHistory.push({role:'user', content: text});
+
+  // Check farewell
+  if (/^(no\b|chau|gracias|hasta luego|cerrar|salir|terminar|eso es todo|no gracias)/i.test(text.trim()) && chatHistory.length > 2) {
+    showTyping();
+    await delay(700);
+    hideTyping();
+    addBot('¡Hasta luego! Fue un placer ayudarte. Si en algún momento necesitás consultar sobre las ordenanzas de Concepción, estaré aquí. 😊');
+    setTimeout(()=>{ toggleChat(); chatReady=false; chatHistory=[]; document.getElementById('chatMsgs').innerHTML=''; }, 3200);
+    return;
+  }
+
+  showTyping();
+
+  const relevant = findRelated(text);
+  const ctx = buildCtx(relevant);
+
+  const systemPrompt = `Sos un asistente municipal especializado en las ordenanzas de la ciudad de Concepción, Tucumán, Argentina. Tu función es responder consultas de vecinos de manera sencilla, clara y accesible — como si le explicaras a un ciudadano común en persona.
+
+INSTRUCCIONES ESTRICTAS:
+1. Respondé ÚNICAMENTE con información de las ordenanzas disponibles en el catálogo.
+2. Si no encontrás la información, respondé EXACTAMENTE: "No encuentro la información solicitada - Dirigite a los canales oficiales para obtenerla."
+3. Al citar una ordenanza, mencioná su número: por ejemplo "según la Ordenanza Nº 5821...".
+4. Usá lenguaje simple, evitá tecnicismos jurídicos.
+5. Después de cada respuesta, siempre preguntá: "¿Deseás realizar otra consulta?"
+6. Si el usuario dice que no, despedite cordialmente.
+7. Nunca inventes información que no esté en el catálogo.
+
+CATÁLOGO DE ORDENANZAS DISPONIBLES (${allOrdenanzas.length} total, mostrando las más relevantes):
+${ctx}`;
+
+  try {
+    const apiKey = CFG.geminiKey;
+    if (!apiKey) throw new Error('Sin API Key de Gemini');
+
+    // Gemini 2.0 Flash-Lite via Google AI REST API
+    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent?key=${apiKey}`;
+
+    // Build conversation history for Gemini (uses 'user'/'model' roles)
+    const geminiHistory = chatHistory.slice(0, -1).map(m => ({
+      role: m.role === 'assistant' ? 'model' : 'user',
+      parts: [{ text: m.content }]
+    }));
+
+    const fullPrompt = `${systemPrompt}\n\nConsulta del usuario: ${text}`;
+
+    const resp = await fetch(geminiUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        contents: [
+          ...geminiHistory,
+          { role: 'user', parts: [{ text: fullPrompt }] }
+        ],
+        generationConfig: {
+          temperature: 0.3,
+          maxOutputTokens: 800,
+        }
+      })
+    });
+
+    hideTyping();
+    if (!resp.ok) {
+      const errData = await resp.json().catch(()=>({}));
+      throw new Error(errData.error?.message || 'Gemini API ' + resp.status);
+    }
+    const data = await resp.json();
+    const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || 'No pude procesar tu consulta.';
+    chatHistory.push({role:'assistant', content: reply});
+    addBot(reply, ['Sí, tengo otra consulta','No, gracias']);
+
+  } catch(e) {
+    hideTyping();
+    console.error('Gemini API error:', e.message);
+    // Local fallback
+    const reply = localReply(text, relevant);
+    chatHistory.push({role:'assistant', content: reply});
+    addBot(reply, ['Sí, tengo otra consulta','No, gracias']);
+  }
+}
+
+function findRelated(q) {
+  const words = q.toLowerCase().split(/\s+/).filter(w=>w.length>3);
+  return allOrdenanzas.filter(o => {
+    const txt = (o.title+' '+o.category+' '+o.keywords.join(' ')).toLowerCase();
+    return words.some(w => txt.includes(w));
+  }).slice(0, 8);
+}
+
+function buildCtx(ords) {
+  if (!ords.length) return 'No se encontraron ordenanzas relacionadas.';
+  return ords.map(o =>
+    `• Ord. Nº ${o.number} (${o.year}) — "${o.title}" | Temática: ${o.category} | Palabras clave: ${o.keywords.join(', ')}`
+  ).join('\n');
+}
+
+function localReply(query, relevant) {
+  if (!relevant.length) return 'No encuentro la información solicitada - Dirigite a los canales oficiales para obtenerla.\n\n¿Deseás realizar otra consulta?';
+  const list = relevant.map(o=>`• <strong>Ord. Nº ${o.number}</strong> — ${o.title} <em>(${o.year})</em>`).join('<br>');
+  return `Encontré las siguientes ordenanzas relacionadas con tu consulta:<br><br>${list}<br><br>Podés acceder a ellas en el catálogo o usando el botón Ver/Descargar. ¿Deseás realizar otra consulta?`;
+}
+
+function delay(ms) { return new Promise(r=>setTimeout(r,ms)); }
+
+// ── INIT ──────────────────────────────────────────────────────
+loadCfg();
+
+document.getElementById('searchInput').addEventListener('input', ()=>{
+  clearTimeout(window._sq); window._sq=setTimeout(applyFilters,280);
+});
+
+// Show chat badge after 4s
+setTimeout(()=>{ if(!chatOpen) { const b=document.getElementById('chatBadge'); b.style.display='flex'; } }, 4000);
+
+// Start loading
+loadOrdenanzas();
+</script>
+</body>
+</html>
