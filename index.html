@@ -628,30 +628,18 @@ input[type="checkbox"] { width: 15px; height: 15px; accent-color: var(--navy); c
     <span id="statusText">Iniciando sistema...</span>
   </div>
 
-  <!-- DIAGNÓSTICO CORS -->
-  <div id="diagPanel" style="display:none; background:#fff8e1; border:1px solid #ffe082; border-radius:10px; padding:18px 20px; margin-bottom:20px; font-size:13px; color:#5d4037; line-height:1.7">
-    <strong style="font-size:14px; color:#e65100; display:block; margin-bottom:8px">⚠ No se pudo conectar con Google Drive</strong>
-    El error <em>"Failed to fetch"</em> ocurre porque el navegador bloquea llamadas directas a la API de Google Drive cuando la app se abre como archivo local (<code>file://</code>). Para solucionarlo, la app necesita estar publicada en un servidor web.<br><br>
-    <strong style="color:#1a237e">✅ Solución más rápida — GitHub Pages (gratis):</strong>
+  <!-- DIAGNÓSTICO INFO -->
+  <div id="diagPanel" style="display:none; background:#e8f5e9; border:1px solid #a5d6a7; border-radius:10px; padding:18px 20px; margin-bottom:20px; font-size:13px; color:#1b5e20; line-height:1.7">
+    <strong style="font-size:14px; color:#2e7d32; display:block; margin-bottom:8px">✓ Catálogo cargado con los 77 archivos reales de Drive</strong>
+    Los archivos están vinculados directamente con sus IDs de Google Drive. Los botones <strong>Ver</strong> y <strong>Descargar</strong> abren cada ordenanza en Drive.<br><br>
+    <strong style="color:#1a237e">Para ver los nombres y fechas completos, publicar la app en un servidor web:</strong>
     <ol style="margin: 8px 0 0 18px">
-      <li>Ir a <a href="https://github.com" target="_blank" style="color:#1565c0">github.com</a> → Crear cuenta o iniciar sesión</li>
-      <li>Crear repositorio nuevo → marcar como <strong>Public</strong></li>
-      <li>Subir el archivo <code>ordenanzas_concepcion.html</code></li>
-      <li>Ir a <strong>Settings → Pages</strong> → Source: rama <code>main</code></li>
-      <li>La URL pública será: <code>https://TU_USUARIO.github.io/REPO/ordenanzas_concepcion.html</code></li>
+      <li>Subir el archivo HTML a <a href="https://github.com" target="_blank" style="color:#1565c0"><strong>GitHub Pages</strong></a> (gratuito)</li>
+      <li>O insertar en <strong>Google Sites</strong> mediante "Insertar URL"</li>
+      <li>Una vez publicada, presionar <strong>Actualizar</strong> — cargará los nombres reales automáticamente</li>
+      <li>También verificar que la carpeta de Drive esté compartida como <strong>"Cualquiera con el enlace puede ver"</strong></li>
     </ol>
-    <br>
-    <strong style="color:#1a237e">✅ También verificar en Google Cloud Console:</strong>
-    <ol style="margin: 8px 0 0 18px">
-      <li>Ir a <a href="https://console.cloud.google.com/apis/credentials" target="_blank" style="color:#1565c0">APIs y servicios → Credenciales</a></li>
-      <li>Seleccionar la API Key → <strong>Restricciones de aplicaciones</strong></li>
-      <li>Elegir <strong>"Ninguna"</strong> o <strong>"Sitios web HTTP"</strong> y agregar el dominio donde se aloje la app</li>
-      <li>Verificar que la <strong>Google Drive API</strong> esté habilitada en el proyecto</li>
-      <li>Confirmar que la carpeta Drive esté compartida como <strong>"Cualquiera con el enlace puede ver"</strong></li>
-    </ol>
-    <br>
-    <span style="color:#2e7d32">Mientras tanto la app funciona con el <strong>catálogo de demostración</strong> con 30 ordenanzas de ejemplo.</span>
-    <button onclick="document.getElementById('diagPanel').style.display='none'" style="float:right; background:none; border:1px solid #bcaaa4; border-radius:6px; padding:4px 12px; font-size:12px; cursor:pointer; color:#5d4037; margin-top:-4px">Cerrar</button>
+    <button onclick="document.getElementById('diagPanel').style.display='none'" style="float:right; background:none; border:1px solid #a5d6a7; border-radius:6px; padding:4px 12px; font-size:12px; cursor:pointer; color:#2e7d32; margin-top:-4px">Cerrar</button>
   </div>
 
   <!-- STATS -->
@@ -919,7 +907,7 @@ function getBadge(cat) {
 async function fetchFromDrive() {
   if (!CFG.driveKey) {
     setStatus('⚠ Sin API Key de Google Drive — usando catálogo de demostración.', 'warning');
-    return buildFromDemo();
+    return [];
   }
 
   // Estrategia 1: Drive API v3 directa (funciona desde servidores web / GitHub Pages)
@@ -978,7 +966,7 @@ async function fetchFromDrive() {
       msg = `⚠ Error Drive: ${lastError}. Usando catálogo de demostración.`;
     }
     setStatus(msg, 'error');
-    return buildFromDemo();
+    return [];
   }
 
   // Filtrar solo documentos
@@ -994,7 +982,7 @@ async function fetchFromDrive() {
 
   if (docs.length === 0) {
     setStatus('⚠ La carpeta no contiene archivos PDF/DOC visibles. Verifique que sea pública.', 'error');
-    return buildFromDemo();
+    return [];
   }
 
   return docs.map(f => buildOrd(f));
@@ -1018,77 +1006,139 @@ function buildOrd(f) {
   };
 }
 
-function buildFromDemo() {
-  const demo = [
-    {id:'d1',name:'Ordenanza_5821_2024_Codigo_Urbanistico.pdf',mimeType:'application/pdf',modifiedTime:'2024-11-15'},
-    {id:'d2',name:'Ordenanza_5820_2024_Transito_Vehiculos_Automotores.pdf',mimeType:'application/pdf',modifiedTime:'2024-10-20'},
-    {id:'d3',name:'Ordenanza_5815_2024_Gestion_Residuos_Ambiental.pdf',mimeType:'application/pdf',modifiedTime:'2024-09-30'},
-    {id:'d4',name:'Ordenanza_5810_2024_Presupuesto_Anual_Hacienda.pdf',mimeType:'application/pdf',modifiedTime:'2024-09-01'},
-    {id:'d5',name:'Ordenanza_5808_2024_Habilitacion_Comercial_Locales.pdf',mimeType:'application/pdf',modifiedTime:'2024-08-20'},
-    {id:'d6',name:'Ordenanza_5805_2024_Obra_Publica_Pavimento_Vial.pdf',mimeType:'application/pdf',modifiedTime:'2024-08-15'},
-    {id:'d7',name:'Ordenanza_5799_2024_Seguridad_Guardia_Urbana.pdf',mimeType:'application/pdf',modifiedTime:'2024-07-10'},
-    {id:'d8',name:'Ordenanza_5795_2024_Salud_Bromatologia_Alimentos.pdf',mimeType:'application/pdf',modifiedTime:'2024-07-01'},
-    {id:'d9',name:'Ordenanza_5790_2024_Educacion_Cultura_Museos.pdf',mimeType:'application/pdf',modifiedTime:'2024-06-15'},
-    {id:'d10',name:'Ordenanza_5785_2023_Tasas_Municipales_Impuestos.pdf',mimeType:'application/pdf',modifiedTime:'2023-12-10'},
-    {id:'d11',name:'Ordenanza_5780_2023_Arbolado_Urbano_Ambiental.pdf',mimeType:'application/pdf',modifiedTime:'2023-11-20'},
-    {id:'d12',name:'Ordenanza_5775_2023_Codigo_Edificacion_Urbanismo.pdf',mimeType:'application/pdf',modifiedTime:'2023-10-05'},
-    {id:'d13',name:'Ordenanza_5770_2023_Estacionamiento_Medido_Transito.pdf',mimeType:'application/pdf',modifiedTime:'2023-09-12'},
-    {id:'d14',name:'Ordenanza_5765_2023_Mercado_Municipal_Comercio.pdf',mimeType:'application/pdf',modifiedTime:'2023-08-25'},
-    {id:'d15',name:'Ordenanza_5760_2023_Emergencia_Sanitaria_Salud.pdf',mimeType:'application/pdf',modifiedTime:'2023-07-30'},
-    {id:'d16',name:'Ordenanza_5755_2022_Zonificacion_Usos_Suelo_Urbanismo.pdf',mimeType:'application/pdf',modifiedTime:'2022-12-20'},
-    {id:'d17',name:'Ordenanza_5750_2022_Transporte_Publico_Remis_Transito.pdf',mimeType:'application/pdf',modifiedTime:'2022-11-15'},
-    {id:'d18',name:'Ordenanza_5745_2022_Animales_Domesticos_Zoonosis.pdf',mimeType:'application/pdf',modifiedTime:'2022-10-01'},
-    {id:'d19',name:'Ordenanza_5740_2022_Publicidad_Propaganda_Comercio.pdf',mimeType:'application/pdf',modifiedTime:'2022-09-10'},
-    {id:'d20',name:'Ordenanza_5735_2022_Infraestructura_Cloacas_Obras.pdf',mimeType:'application/pdf',modifiedTime:'2022-08-05'},
-    {id:'d21',name:'Ordenanza_5730_2022_Habilitacion_Industria_Comercio.pdf',mimeType:'application/pdf',modifiedTime:'2022-07-12'},
-    {id:'d22',name:'Ordenanza_5725_2021_Patrimonio_Historico_Educacion.pdf',mimeType:'application/pdf',modifiedTime:'2021-12-28'},
-    {id:'d23',name:'Ordenanza_5720_2021_Alumbrado_Publico_Obras.pdf',mimeType:'application/pdf',modifiedTime:'2021-11-20'},
-    {id:'d24',name:'Ordenanza_5715_2021_Contrataciones_Licitaciones_Hacienda.pdf',mimeType:'application/pdf',modifiedTime:'2021-10-15'},
-    {id:'d25',name:'Ordenanza_5710_2021_Plazas_Espacios_Verdes_Urbanismo.pdf',mimeType:'application/pdf',modifiedTime:'2021-09-05'},
-    {id:'d26',name:'Ordenanza_5705_2020_Presupuesto_Extraordinario.pdf',mimeType:'application/pdf',modifiedTime:'2020-12-01'},
-    {id:'d27',name:'Ordenanza_5700_2020_Protocolo_Covid_Salud.pdf',mimeType:'application/pdf',modifiedTime:'2020-06-10'},
-    {id:'d28',name:'Ordenanza_5695_2020_Comercio_Electronico_Habilitacion.pdf',mimeType:'application/pdf',modifiedTime:'2020-03-15'},
-    {id:'d29',name:'Ordenanza_5688_2019_Red_Vial_Transito.pdf',mimeType:'application/pdf',modifiedTime:'2019-11-20'},
-    {id:'d30',name:'Ordenanza_5680_2019_Codigo_Urbanistico_Actualizacion.pdf',mimeType:'application/pdf',modifiedTime:'2019-08-05'},
-  ];
-  return demo.map(f => buildOrd({ ...f, webViewLink: `https://drive.google.com/drive/folders/${CFG.folderId}`, webContentLink: `https://drive.google.com/drive/folders/${CFG.folderId}` }));
+// ── ARCHIVOS REALES DEL DRIVE (77 ordenanzas) ──────────────
+// IDs obtenidos directamente de la carpeta oficial de Concepción, Tucumán
+// Los nombres se resuelven en tiempo real cuando la carpeta es pública.
+// Mientras tanto cada archivo se identifica como "Ordenanza Nº N" con link directo a Drive.
+const REAL_FILES = [
+  {id:"1wkd0QZgiiiGBBADbdNCW-b2tTQYp0MUt",num:1},
+  {id:"1_fyilh3PXsEFcwWMlGYazYk0bWBr6ujo",num:2},
+  {id:"1mA-fQHcPUt_c3Xk8vel_vY2OY6XzGy9A",num:3},
+  {id:"1-5XYUDirbqKBIZ9VDOy2aQhwMsph7h1b",num:4},
+  {id:"1yQ2pfIXi5U-y7-wZosor9mR-sMJpXm3J",num:5},
+  {id:"1QypaIN_O9S5M4lY_6SkoYyF_MM-f_fEA",num:6},
+  {id:"1WbtU9AnZClUmadbIm9E-YhY_Euk74tp_",num:7},
+  {id:"1Kjq9tCsdtn1vpsWlpdZGKB_UVJATmdLA",num:8},
+  {id:"1JjCH-hNUu-2H1wcas360z0tdjUXBYl-x",num:9},
+  {id:"1Plt5hcNzD8l09dlRKNLPMs4jL2XUNtya",num:10},
+  {id:"1CK7q4mcEF0fSy9ns7eksEBEr0u-z_6lF",num:11},
+  {id:"17M5aivPrMvGebsTUufZaXzhwjqEkcjFB",num:12},
+  {id:"1kDwDhaC6HNijv2WX0sNx-QLL77W6_mUY",num:13},
+  {id:"1e9P6bTd5kDpkmv4Bw7doU7F4kKT4tSTT",num:14},
+  {id:"1A44ijAOrhUGS-WKbAut5699m-SZUUe_0",num:15},
+  {id:"1aUd_Koy5jOqbtW5YgrHhc3H6fLxHVHVx",num:16},
+  {id:"1LJ0cq9ICBB73CDUI1l2--VGgBeEzE2LS",num:17},
+  {id:"1-vn4x1s2liNZk1y2UjfeMkrUjNkOyOJu",num:18},
+  {id:"17NOJ6GnIMtYyrYNLhjodHAE4z_MMMoeY",num:19},
+  {id:"1inx7foczasPC6NvhVIX-_z5I-ASKx5Rx",num:20},
+  {id:"1Vn-d7-GjnPUzJOGP4xPC2kdZU9VljgKo",num:21},
+  {id:"1h83zoqmn-E_NnK_s6HVtpctKTSIu4SkK",num:22},
+  {id:"1WDHtWc7TK790oKIZknjswK3qjrftY7Wn",num:23},
+  {id:"1xxBVgTJH1kx24NOjRt-DET5Cf3KA80XZ",num:24},
+  {id:"1P8250ey_9d2jYBtLe2AgYHSvkgadYu8J",num:25},
+  {id:"1Mn4UT_6qVT0wDbGuhDtElAMDu6b2o51d",num:26},
+  {id:"1upoD92JmrWdYX4ttVPcsrFO2l19XPxdM",num:27},
+  {id:"18oMYG511jwRJqLlzArMT_70BvXcRmeKe",num:28},
+  {id:"1a-yR3bUyLZGPG9byjiKBXJHaHOvSdJ5c",num:29},
+  {id:"1wNmCINFVWAhMK8PgBXjXtbVbqc-IMFMZ",num:30},
+  {id:"1xx_9V2l-XM-jxEA18iDtIqRISHtCd4AG",num:31},
+  {id:"144Al1VLzGSYQV8Jy2JmAPFXbWy126Vyw",num:32},
+  {id:"172Cj08zHdUEDGuwficg8hRkJOydObfn5",num:33},
+  {id:"1mi4oz_6X4cpLx26C3Kd25-mw9MkxJw2u",num:34},
+  {id:"15eGb3IlpeDMlgeJHn0NxKvLEAZ8GCHIU",num:35},
+  {id:"1qCTgVNloPICDa0TCmqAIYx1e6k-VJR4E",num:36},
+  {id:"1Rh3uzXAf4mbkYZwOmpOMOrsRNx1hl7YX",num:37},
+  {id:"1EKV7lRzsuolhJDV3crMGl4tYWLFixlNB",num:38},
+  {id:"1CU_cbvKmlvAMPbMGfm1UXzE1vipeV8ZN",num:39},
+  {id:"1WLMdAaX68WpZU9D4JRpRpxPZPeahTFq2",num:40},
+  {id:"1MaKQ76lIwuR2GcCUtfuMb4lgvM7mvuuD",num:41},
+  {id:"1GrXJeP7Y2pODUrDk12k98THmQK7VhAzQ",num:42},
+  {id:"1IfnA21HcYjjoP-AgOQNSp0W83xGr6zFc",num:43},
+  {id:"1oaUu9H02Ro5lb6LRLWLVWUYvURNdM9R_",num:44},
+  {id:"17L0-Fl_DCOfwAr6ZOW_vHsjCl5BeRQZS",num:45},
+  {id:"1U_spIOjmQgTNrZmHgDwhVzYvQphXXf9I",num:46},
+  {id:"1Pk6ESfP87uvoDB4pJS4XnQP-ks9K2a75",num:47},
+  {id:"119nq_g-8ycdG7SUxNL22vk3IgTzb0YQ4",num:48},
+  {id:"1y-K7yR_rCOGnd5wfqKbzTw3cuA7Au1Tq",num:49},
+  {id:"1ouMnjBIOtJDffa1MxztzPLqMInvukoGK",num:50},
+  {id:"1lZDH_OgDkjNPpAemBL_8RTKrjytA8PmX",num:51},
+  {id:"1Apu4lAFBPowY7VVT_3eyobESh7hl47MC",num:52},
+  {id:"1vtc9e4U40Y8EVQGF49N0z0rZr-9RFGnK",num:53},
+  {id:"11ph2G1lELG-jyCCPGn-Ub7rcxhi8Mnwc",num:54},
+  {id:"1roW1CB7nTQVlXr_U0rW2sehynIeqQWry",num:55},
+  {id:"1p3sGBpuScGbFiYJtVZ4jcp4F5ofIF1UI",num:56},
+  {id:"1Mu27FOvMJ1TysFOaCWmm-M1VOwk8MhCb",num:57},
+  {id:"1sVbyJ47QCZxJgFA3403lMHZevwzN-9AT",num:58},
+  {id:"1wO89FP0O_tM_O7-RwB_jElS-JkpQ0zTQ",num:59},
+  {id:"1775-2wLzwWsxreq2Z6f-tJPAoozX1sWF",num:60},
+  {id:"1bD4yfiKiFAFGks5MggDJaG-synm5nQkt",num:61},
+  {id:"1Zp3rREcTy37xiLvme2nBHaCDW7DJb7q0",num:62},
+  {id:"1jNGNul6JpjySjTK0pUPktcMlOiubgoDw",num:63},
+  {id:"1Qg62l7nwVSj3wQEUTM-xO4nWkCgcdok0",num:64},
+  {id:"1dv36eKnWD1xGz26_gdE-MczZLyej6wan",num:65},
+  {id:"1wdAy-tYOTypu_kZFLizIr9Em1-TCwq5J",num:66},
+  {id:"1abq4FdLsTLjUfxl3DNp5TVaUP9F1_vZL",num:67},
+  {id:"1S9ZZTN-355Yw9-U1jHYVfnNzfhlHz6X3",num:68},
+  {id:"1TlfFszImC93VNLRdAKIpo2CJIS6KTiOE",num:69},
+  {id:"1q-39cEhAjxIj_OnyO8VqcDbe8OHwt8ev",num:70},
+  {id:"1jLgoRgYD4T0Sk8jRe4HdLhaCbHzcp0pF",num:71},
+  {id:"1sG8g83r4PjOmbHpOU5gzFoSFLjvnxOm7",num:72},
+  {id:"1j4TOYT65hbcZKr988FPOimHhXPWLsCRL",num:73},
+  {id:"1uWT-X6AARXWES9LDbYNI05W5xVK2uErZ",num:74},
+  {id:"1DETiCKam_dco-t7CyzmKHI5jqJvsaY0z",num:75},
+  {id:"1jaI8SfV3tYd8pOr9OAtrdyrPBoKmgGZ9",num:76},
+  {id:"1Tr5Lv_3CzvetyHkBFyyP3m3RTqdGE6pX",num:77},
+];
+
+function buildFromRealFiles() {
+  return REAL_FILES.map(f => ({
+    id: f.id,
+    name: `Ordenanza_${String(f.num).padStart(3,'0')}.pdf`,
+    number: String(f.num),
+    title: `Ordenanza Nº ${f.num} — Municipalidad de Concepción`,
+    category: 'General',
+    year: '—',
+    keywords: [],
+    viewLink: `https://drive.google.com/file/d/${f.id}/view`,
+    downloadLink: `https://drive.google.com/uc?export=download&id=${f.id}`,
+    modified: '—',
+    pendingName: true   // flag: nombre pendiente de resolver
+  }));
 }
 
 // ── LOAD & UPDATE ───────────────────────────────────────────
 async function loadOrdenanzas() {
-  setStatus('Conectando con Google Drive...', 'loading');
+  setStatus('Cargando catálogo de ordenanzas...', 'loading');
   showLoading();
+
+  // Siempre cargamos los 77 archivos reales del Drive como base
+  let ords = buildFromRealFiles();
+
+  // Intentamos enriquecer con nombres reales via API (funciona en servidores web)
   try {
-    let ords = await fetchFromDrive();
-    ords.sort((a,b) => (parseInt(b.number)||0) - (parseInt(a.number)||0));
-    allOrdenanzas = ords;
-    filteredOrdenanzas = [...ords];
-    updateStats();
-    populateFilters();
-    applyFilters();
-    renderThemes();
-    renderKeywords();
-    if (CFG.driveKey) {
+    const enriched = await fetchFromDrive();
+    if (enriched && enriched.length > 0) {
+      ords = enriched;
       setStatus(`✓ Catálogo actualizado desde Google Drive — ${ords.length} ordenanzas cargadas — ${new Date().toLocaleString('es-AR')}`, 'success');
-    }
-    return true;
-  } catch(err) {
-    console.error('Drive error:', err);
-    const msg = err.message || 'Error desconocido';
-    const isCors = msg.includes('fetch') || msg.includes('CORS') || msg.includes('Failed') || msg.toLowerCase().includes('network');
-    if (isCors) {
-      setStatus('⚠ Error de CORS/red: la app debe publicarse en un servidor web para acceder a Drive.', 'error');
+      const diag = document.getElementById('diagPanel');
+      if (diag) diag.style.display = 'none';
     } else {
-      setStatus(`⚠ Error al conectar con Drive: ${msg}. Usando datos de demostración.`, 'error');
+      setStatus(`✓ Catálogo cargado — ${ords.length} ordenanzas reales de la Municipalidad de Concepción. Para ver los nombres completos, publicar en un servidor web.`, 'success');
     }
-    // Siempre mostrar el panel de diagnóstico ante cualquier fallo de Drive
-    const diag = document.getElementById('diagPanel');
-    if (diag) diag.style.display = 'block';
-    allOrdenanzas = buildFromDemo();
-    filteredOrdenanzas = [...allOrdenanzas];
-    updateStats(); populateFilters(); applyFilters(); renderThemes(); renderKeywords();
-    return false;
+  } catch(err) {
+    console.warn('Drive API no disponible (entorno local):', err.message);
+    setStatus(`✓ ${ords.length} ordenanzas cargadas con links directos a Drive. Los nombres se actualizan automáticamente al publicar en un servidor web.`, 'success');
   }
+
+  ords.sort((a,b) => (parseInt(a.number)||0) - (parseInt(b.number)||0));
+  allOrdenanzas = ords;
+  filteredOrdenanzas = [...ords];
+  updateStats();
+  populateFilters();
+  applyFilters();
+  renderThemes();
+  renderKeywords();
+  return true;
 }
 
 async function triggerUpdate() {
@@ -1190,18 +1240,28 @@ function renderTable(ords, container) {
     <thead><tr>
       <th></th><th>Nº Ord.</th><th>Denominación</th><th>Temática</th><th>Año</th><th style="min-width:110px">Acciones</th>
     </tr></thead>
-    <tbody>${items.map(o => `
+    <tbody>${items.map(o => {
+      const titleHtml = o.pendingName
+        ? `<div class="ord-title" style="color:var(--text-muted);font-style:italic">
+             Ordenanza Nº ${o.number}
+             <small style="display:inline-flex;align-items:center;gap:4px">
+               <span style="display:inline-block;width:8px;height:8px;border:2px solid var(--gold);border-top-color:transparent;border-radius:50%;animation:spin 0.8s linear infinite"></span>
+               Nombre pendiente · Abrir en Drive para ver
+             </small>
+           </div>`
+        : `<div class="ord-title">${o.title}<small>${o.keywords.slice(0,3).join(' · ')}</small></div>`;
+      return `
       <tr onclick="toggleSel('${o.id}',event)" id="row-${o.id}" class="${selectedIds.has(o.id)?'selected':''}">
         <td onclick="event.stopPropagation();toggleSel('${o.id}',event)">
           <input type="checkbox" ${selectedIds.has(o.id)?'checked':''} onchange="toggleSel('${o.id}',event)">
         </td>
         <td><span class="ord-num">Nº ${o.number}</span></td>
-        <td><div class="ord-title">${o.title}<small>${o.keywords.slice(0,3).join(' · ')}</small></div></td>
+        <td>${titleHtml}</td>
         <td><span class="badge ${getBadge(o.category)}">${o.category}</span></td>
         <td style="color:var(--text-muted);white-space:nowrap">${o.year}</td>
         <td>
           <div style="display:flex;gap:5px;flex-wrap:nowrap">
-            <a href="${o.viewLink}" target="_blank" onclick="event.stopPropagation()" title="Ver" style="display:inline-flex;align-items:center;gap:5px;padding:5px 10px;border:1px solid var(--border-mid);border-radius:7px;background:var(--white);color:var(--text-mid);font-size:12px;font-weight:600;text-decoration:none;transition:background 0.14s" onmouseover="this.style.background='var(--cream-dark)'" onmouseout="this.style.background='var(--white)'">
+            <a href="${o.viewLink}" target="_blank" onclick="event.stopPropagation()" title="Ver en Drive" style="display:inline-flex;align-items:center;gap:5px;padding:5px 10px;border:1px solid var(--border-mid);border-radius:7px;background:var(--white);color:var(--text-mid);font-size:12px;font-weight:600;text-decoration:none;transition:background 0.14s" onmouseover="this.style.background='var(--cream-dark)'" onmouseout="this.style.background='var(--white)'">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:13px;height:13px"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/></svg>Ver
             </a>
             <a href="${o.downloadLink}" target="_blank" onclick="event.stopPropagation()" title="Descargar" style="display:inline-flex;align-items:center;gap:5px;padding:5px 10px;border-radius:7px;background:var(--gold);color:var(--navy);font-size:12px;font-weight:600;text-decoration:none;transition:background 0.14s" onmouseover="this.style.background='var(--gold-light)'" onmouseout="this.style.background='var(--gold)'">
@@ -1209,7 +1269,8 @@ function renderTable(ords, container) {
             </a>
           </div>
         </td>
-      </tr>`).join('')}
+      </tr>`;
+    }).join('')}
     </tbody></table></div>`;
 }
 
@@ -1467,53 +1528,95 @@ INSTRUCCIONES ESTRICTAS:
 CATÁLOGO DE ORDENANZAS DISPONIBLES (${allOrdenanzas.length} total, mostrando las más relevantes):
 ${ctx}`;
 
-  try {
-    const apiKey = CFG.geminiKey;
-    if (!apiKey) throw new Error('Sin API Key de Gemini');
+  const apiKey = CFG.geminiKey;
 
-    // Gemini 2.0 Flash-Lite via Google AI REST API
+  if (!apiKey) {
+    hideTyping();
+    addBot('⚠ No hay API Key de Gemini configurada. Ir a <b>⚙ Configurar</b> e ingresar la clave.', []);
+    chatHistory.push({role:'assistant', content:'Sin API Key configurada.'});
+    return;
+  }
+
+  // Intentar llamada a Gemini
+  let geminiOk = false;
+  try {
     const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent?key=${apiKey}`;
 
-    // Build conversation history for Gemini (uses 'user'/'model' roles)
-    const geminiHistory = chatHistory.slice(0, -1).map(m => ({
-      role: m.role === 'assistant' ? 'model' : 'user',
-      parts: [{ text: m.content }]
-    }));
+    const contents = [];
+    // System prompt como primer mensaje de usuario (Gemini no tiene campo system separado en REST)
+    contents.push({ role: 'user', parts: [{ text: systemPrompt }] });
+    contents.push({ role: 'model', parts: [{ text: 'Entendido. Estoy listo para responder consultas sobre las ordenanzas municipales de Concepción.' }] });
 
-    const fullPrompt = `${systemPrompt}\n\nConsulta del usuario: ${text}`;
+    // Historial previo (sin el último mensaje del usuario que ya está en contents)
+    const prevHistory = chatHistory.slice(0, -1);
+    for (const m of prevHistory) {
+      contents.push({
+        role: m.role === 'assistant' ? 'model' : 'user',
+        parts: [{ text: m.content }]
+      });
+    }
+    // Último mensaje del usuario
+    contents.push({ role: 'user', parts: [{ text: text }] });
 
     const resp = await fetch(geminiUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        contents: [
-          ...geminiHistory,
-          { role: 'user', parts: [{ text: fullPrompt }] }
-        ],
-        generationConfig: {
-          temperature: 0.3,
-          maxOutputTokens: 800,
-        }
+        contents,
+        generationConfig: { temperature: 0.3, maxOutputTokens: 800 }
       })
     });
 
     hideTyping();
+
     if (!resp.ok) {
       const errData = await resp.json().catch(()=>({}));
-      throw new Error(errData.error?.message || 'Gemini API ' + resp.status);
+      const errMsg = errData.error?.message || `HTTP ${resp.status}`;
+      const errCode = resp.status;
+
+      // Mostrar error específico en el chat
+      if (errCode === 403 && errMsg.includes('allowlist')) {
+        addBot(`⚠ <b>API Key de Gemini bloqueada</b> por restricción de dominio.<br><br>
+Para activarla:<br>
+1. Ir a <a href="https://aistudio.google.com/app/apikey" target="_blank" style="color:var(--navy)">aistudio.google.com/app/apikey</a><br>
+2. Editar la API Key → <b>Restricciones de API</b><br>
+3. Quitar restricciones de dominio <b>o</b> agregar el dominio donde está publicada la app<br><br>
+<i>Mientras tanto uso respuesta local:</i><br><br>${localReply(text, relevant)}`, ['Sí, tengo otra consulta','No, gracias']);
+      } else if (errCode === 400) {
+        addBot(`⚠ Error en la consulta (400): ${errMsg}<br><br>${localReply(text, relevant)}`, ['Sí, tengo otra consulta','No, gracias']);
+      } else {
+        addBot(`⚠ Error Gemini (${errCode}): ${errMsg}<br><br>${localReply(text, relevant)}`, ['Sí, tengo otra consulta','No, gracias']);
+      }
+      chatHistory.push({role:'assistant', content: errMsg});
+      return;
     }
+
     const data = await resp.json();
-    const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || 'No pude procesar tu consulta.';
+    const reply = data.candidates?.[0]?.content?.parts?.[0]?.text;
+
+    if (!reply) {
+      throw new Error('Respuesta vacía de Gemini');
+    }
+
+    geminiOk = true;
     chatHistory.push({role:'assistant', content: reply});
     addBot(reply, ['Sí, tengo otra consulta','No, gracias']);
 
   } catch(e) {
-    hideTyping();
-    console.error('Gemini API error:', e.message);
-    // Local fallback
-    const reply = localReply(text, relevant);
-    chatHistory.push({role:'assistant', content: reply});
-    addBot(reply, ['Sí, tengo otra consulta','No, gracias']);
+    if (!geminiOk) {
+      hideTyping();
+      const isCors = e.message?.includes('fetch') || e.message?.includes('Failed') || e.message?.includes('NetworkError');
+      if (isCors) {
+        addBot(`⚠ <b>Error de red al contactar Gemini.</b><br><br>
+El chatbot IA requiere que la app esté publicada en un servidor web (no como archivo local).<br><br>
+<b>Opciones:</b><br>
+• Publicar en <b>GitHub Pages</b> o <b>Google Sites</b><br>
+• O usar la respuesta local:<br><br>${localReply(text, relevant)}`, ['Sí, tengo otra consulta','No, gracias']);
+      } else {
+        addBot(`⚠ Gemini no disponible: ${e.message}<br><br>${localReply(text, relevant)}`, ['Sí, tengo otra consulta','No, gracias']);
+      }
+      chatHistory.push({role:'assistant', content: e.message});
+    }
   }
 }
 
@@ -1540,6 +1643,61 @@ function localReply(query, relevant) {
 
 function delay(ms) { return new Promise(r=>setTimeout(r,ms)); }
 
+// ── RESOLUCIÓN PROGRESIVA DE NOMBRES ─────────────────────────
+// Intenta obtener el nombre real de cada archivo vía Drive API
+// de forma progresiva, de a 5 en 5, sin bloquear la UI.
+async function resolveNamesProgressively() {
+  if (!CFG.driveKey) return;
+  const pending = allOrdenanzas.filter(o => o.pendingName);
+  if (!pending.length) return;
+
+  const BATCH = 5;
+  let resolved = 0;
+
+  for (let i = 0; i < pending.length; i += BATCH) {
+    const batch = pending.slice(i, i + BATCH);
+    await Promise.all(batch.map(async o => {
+      try {
+        const url = `https://www.googleapis.com/drive/v3/files/${o.id}?fields=id,name,mimeType,modifiedTime&key=${CFG.driveKey}`;
+        const resp = await fetch(url, { mode: 'cors' });
+        if (!resp.ok) return;
+        const data = await resp.json();
+        if (data.name) {
+          // Enriquecer el objeto con datos reales
+          const idx = allOrdenanzas.findIndex(x => x.id === o.id);
+          if (idx !== -1) {
+            allOrdenanzas[idx] = buildOrd(data);
+            resolved++;
+          }
+        }
+      } catch(e) { /* silencioso */ }
+    }));
+
+    if (resolved > 0) {
+      // Actualizar UI progresivamente
+      filteredOrdenanzas = allOrdenanzas.filter(o => {
+        const q = document.getElementById('searchInput')?.value.toLowerCase().trim() || '';
+        const cat = document.getElementById('catFilter')?.value || '';
+        const year = document.getElementById('yearFilter')?.value || '';
+        const mQ = !q || o.number.toLowerCase().includes(q) || o.title.toLowerCase().includes(q) ||
+          o.category.toLowerCase().includes(q) || o.keywords.some(k=>k.includes(q));
+        return mQ && (!cat || o.category===cat) && (!year || o.year===year);
+      });
+      renderTable();
+      renderThemes();
+    }
+
+    await delay(300); // pausa entre lotes para no saturar
+  }
+
+  if (resolved > 0) {
+    populateFilters();
+    renderKeywords();
+    updateStats();
+    setStatus(`✓ ${resolved} nombres resueltos desde Drive — ${allOrdenanzas.length} ordenanzas totales`, 'success');
+  }
+}
+
 // ── INIT ──────────────────────────────────────────────────────
 loadCfg();
 
@@ -1550,8 +1708,11 @@ document.getElementById('searchInput').addEventListener('input', ()=>{
 // Show chat badge after 4s
 setTimeout(()=>{ if(!chatOpen) { const b=document.getElementById('chatBadge'); b.style.display='flex'; } }, 4000);
 
-// Start loading
-loadOrdenanzas();
+// Cargar ordenanzas y luego intentar resolver nombres progresivamente
+loadOrdenanzas().then(() => {
+  // Intentar resolver nombres en background (solo funciona en servidor web)
+  setTimeout(resolveNamesProgressively, 1500);
+});
 </script>
 </body>
 </html>
